@@ -17,7 +17,7 @@ class CryptoListModel {
 
 class CryptoList {
   CryptoList({
-    required this.crytoId,
+    required this.cryptoId,
     required this.symbol,
     required this.name,
     required this.currentPrice,
@@ -26,7 +26,7 @@ class CryptoList {
     required this.image,
   });
 
-  final String crytoId;
+  final String cryptoId;
   final String symbol;
   final String name;
   final double currentPrice;
@@ -37,7 +37,7 @@ class CryptoList {
   factory CryptoList.fromJson(String str) => CryptoList.fromMap(json.decode(str));
 
   factory CryptoList.fromMap(Map<String, dynamic> json) => CryptoList(
-    crytoId: json["crytoId"],
+    cryptoId: json["cryptoId"],
     symbol: json["symbol"],
     name: json["name"],
     currentPrice: json["current_price"].toDouble(),

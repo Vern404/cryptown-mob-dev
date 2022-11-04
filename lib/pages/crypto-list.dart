@@ -1,6 +1,7 @@
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
 import 'package:drc_cryptown/widgets/crypto-box.dart';
+import 'package:drc_cryptown/widgets/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +27,7 @@ class _CryptoPageState extends State<CryptoPage> {
     CryptoCubit cubit = BlocProvider.of<CryptoCubit>(context)
       ..fetchCryptoList();
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text('Crypto List'),
       ),

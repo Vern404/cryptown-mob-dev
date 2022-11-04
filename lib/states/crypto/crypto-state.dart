@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/models/cryto-model.dart';
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 
 abstract class CryptoState {}
 

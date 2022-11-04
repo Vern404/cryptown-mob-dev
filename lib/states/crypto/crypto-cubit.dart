@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/models/cryto-model.dart';
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 import 'package:drc_cryptown/service/crypto-service.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/models/cryto-model.dart';
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 import 'package:flutter/material.dart';
 
 class CryptoCard extends StatelessWidget {

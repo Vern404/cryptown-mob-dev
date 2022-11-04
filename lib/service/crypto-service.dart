@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
-import 'package:drc_cryptown/models/cryto-model.dart';
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 
 class CryptoService {
 
