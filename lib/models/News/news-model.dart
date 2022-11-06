@@ -3,14 +3,17 @@ import 'dart:convert';
 class NewsListModel {
   NewsListModel({
     required this.newsList,
+    required this.errorMessage,
   });
 
   final List<NewsList> newsList;
+  final dynamic errorMessage;
 
   factory NewsListModel.fromJson(String str) => NewsListModel.fromMap(json.decode(str));
 
   factory NewsListModel.fromMap(Map<String, dynamic> json) => NewsListModel(
     newsList: List<NewsList>.from(json["newsList"].map((x) => NewsList.fromMap(x))),
+    errorMessage: json["errorMessage"],
   );
 }
 
@@ -36,7 +39,7 @@ class NewsList {
     url: json["url"],
     description: json["description"],
     datePublished: DateTime.parse(json["datePublished"]),
-    image: json["image"] == null ? null : json["image"],
+    image: json["image"] ?? 'Not Found',
   );
 
 }
