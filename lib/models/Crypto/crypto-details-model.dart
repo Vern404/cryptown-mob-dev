@@ -1,0 +1,115 @@
+import 'dart:convert';
+
+class CryptoDetailsModel {
+  CryptoDetailsModel({
+    required this.cryptoDetails,
+  });
+
+  final CryptoDetails cryptoDetails;
+
+  factory CryptoDetailsModel.fromJson(String str) => CryptoDetailsModel.fromMap(json.decode(str));
+
+  factory CryptoDetailsModel.fromMap(Map<String, dynamic> json) => CryptoDetailsModel(
+    cryptoDetails: CryptoDetails.fromMap(json["cryptoDetails"]),
+  );
+}
+
+class CryptoDetails {
+  CryptoDetails({
+    required this.symbol,
+    required this.name,
+    required this.marketCapRank,
+    required this.currentPriceUsd,
+    required this.currentPriceBtc,
+    required this.currentPriceMyr,
+    required this.marketCapUsd,
+    required this.marketCapMyr,
+    required this.totalSupply,
+    required this.maxSupply,
+    required this.circulatingSupply,
+    required this.ath,
+    required this.atl,
+    required this.exchange,
+    required this.description,
+  });
+
+  final String symbol;
+  final String name;
+  final int marketCapRank;
+  final int currentPriceUsd;
+  final int currentPriceBtc;
+  final int currentPriceMyr;
+  final int marketCapUsd;
+  final int marketCapMyr;
+  final int totalSupply;
+  final int maxSupply;
+  final int circulatingSupply;
+  final Ath ath;
+  final Ath atl;
+  final List<Exchange> exchange;
+  final String description;
+
+  factory CryptoDetails.fromJson(String str) => CryptoDetails.fromMap(json.decode(str));
+
+  factory CryptoDetails.fromMap(Map<String, dynamic> json) => CryptoDetails(
+    symbol: json["symbol"],
+    name: json["name"],
+    marketCapRank: json["market_cap_rank"],
+    currentPriceUsd: json["current_price_usd"],
+    currentPriceBtc: json["current_price_btc"],
+    currentPriceMyr: json["current_price_myr"],
+    marketCapUsd: json["market_cap_usd"],
+    marketCapMyr: json["market_cap_myr"],
+    totalSupply: json["total_supply"],
+    maxSupply: json["max_supply"],
+    circulatingSupply: json["circulating_supply"],
+    ath: Ath.fromMap(json["ath"]),
+    atl: Ath.fromMap(json["atl"]),
+    exchange: List<Exchange>.from(json["exchange"].map((x) => Exchange.fromMap(x))),
+    description: json["description"],
+  );
+}
+
+class Ath {
+  Ath({
+    required this.usd,
+    required this.myr,
+    required this.dateUsd,
+    required this.changePercentageUsd,
+    required this.changePercentageMyr,
+  });
+
+  final double usd;
+  final double myr;
+  final DateTime dateUsd;
+  final double changePercentageUsd;
+  final double changePercentageMyr;
+
+  factory Ath.fromJson(String str) => Ath.fromMap(json.decode(str));
+
+  factory Ath.fromMap(Map<String, dynamic> json) => Ath(
+    usd: json["usd"].toDouble(),
+    myr: json["myr"].toDouble(),
+    dateUsd: DateTime.parse(json["date_usd"]),
+    changePercentageUsd: json["change_percentage_usd"].toDouble(),
+    changePercentageMyr: json["change_percentage_myr"].toDouble(),
+  );
+
+}
+
+class Exchange {
+  Exchange({
+    required this.name,
+    required this.tradeUrl,
+  });
+
+  final String name;
+  final String tradeUrl;
+
+  factory Exchange.fromJson(String str) => Exchange.fromMap(json.decode(str));
+
+  factory Exchange.fromMap(Map<String, dynamic> json) => Exchange(
+    name: json["name"],
+    tradeUrl: json["trade_url"],
+  );
+}
