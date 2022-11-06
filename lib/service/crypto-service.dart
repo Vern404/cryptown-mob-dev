@@ -9,7 +9,8 @@ class CryptoService {
 
     final Uri cryptoUrl = Uri(
       scheme: 'http',
-      host: '192.168.18.79',
+      // host: '192.168.18.79',
+      host: '192.168.100.52',
       port:5000,
       path: '/api/crypto/cryptoList',
     );
