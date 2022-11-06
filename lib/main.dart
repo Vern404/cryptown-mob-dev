@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const CryptoPage(),
       routes: {
-        '/crypto-list=':(context) => CryptoPage(),
+        '/crypto-list':(context) => CryptoPage(),
         '/news-list':(context) => NewsPage(),
         '/exchange-list':(context) => ExchangeList(),
   },
