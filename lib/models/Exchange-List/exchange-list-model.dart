@@ -27,7 +27,7 @@ class Exchange {
   });
 
   final String name;
-  final int yearEstablished;
+  final String yearEstablished;
   final String? country;
   final int trustScoreRank;
   final int trustScore;
@@ -39,7 +39,7 @@ class Exchange {
 
   factory Exchange.fromMap(Map<String, dynamic> json) => Exchange(
     name: json["name"],
-    yearEstablished: json["year_established"] ?? 'null',
+    yearEstablished: json["year_established"].toString(),
     country: json["country"] ?? 'null',
     trustScoreRank: json["trust_score_rank"],
     trustScore: json["trust_score"],

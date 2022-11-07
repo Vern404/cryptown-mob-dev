@@ -9,20 +9,24 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             Container(
                 width: MediaQuery.of(context).size.width,
+                // height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: newsListModel.newsList.length,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: newsListModel.news.length,
                 itemBuilder: (context, index) {
                   return Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Image.network('${newsListModel.newsList[index].image}'),
-                        Text('${newsListModel.newsList[index].name}'),
-                        Text('${newsListModel.newsList[index].description}'),
-                        Text('${newsListModel.newsList[index].datePublished}'),
-                      ]
+                        Image.network('${newsListModel.news[index].image}'),
+                        Text('${newsListModel.news[index].name}'),
+                        Text('${newsListModel.news[index].description}'),
+                        Text('${newsListModel.news[index].datePublished}'),
+                      ],
                   );
                 }
               ),
