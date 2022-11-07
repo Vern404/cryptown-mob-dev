@@ -7,7 +7,7 @@ class NewsService {
 
     final Uri newsUrl = Uri(
       scheme: 'http',
-      host: '192.168.100.52',
+      host: '192.168.18.79',
       port:5000,
       path: '/api/news',
     );
