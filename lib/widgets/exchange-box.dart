@@ -7,7 +7,7 @@ class ExchangeListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Column(
+        child: Row(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
@@ -18,10 +18,17 @@ class ExchangeListCard extends StatelessWidget {
                     return Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children:[
-                                  Image.network('${exchangeListModel.exchange[index].image}'),
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    child:Image.network('${exchangeListModel.exchange[index].image}') ,
+                                  )
+                                  ,
                                   Text('${exchangeListModel.exchange[index].name}'),
                                   Text('${exchangeListModel.exchange[index].yearEstablished}'),
                                   Text('${exchangeListModel.exchange[index].country}'),

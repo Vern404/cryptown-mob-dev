@@ -8,15 +8,13 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Column(
+        child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
                 width: MediaQuery.of(context).size.width,
-                // height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
                 itemCount: newsListModel.news.length,
                 itemBuilder: (context, index) {
                   return Column(

@@ -28,7 +28,7 @@ class News {
   final String url;
   final String description;
   final DateTime datePublished;
-  final String image;
+  final String? image;
 
   factory News.fromJson(String str) => News.fromMap(json.decode(str));
 
