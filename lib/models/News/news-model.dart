@@ -37,6 +37,6 @@ class News {
     url: json["url"],
     description: json["description"],
     datePublished: DateTime.parse(json["datePublished"]),
-    image: json["image"] ?? 'not found',
+    image: json["image"] ?? 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png',
   );
 }
