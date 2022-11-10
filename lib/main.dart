@@ -15,14 +15,26 @@ void main() {
     BlocProvider(create: (context) => NewsCubit()),
     BlocProvider(create: (context) => ExchangeCubit()),
     BlocProvider(create: (context) => CryptoDetailsCubit()),
-  ],child: const MyApp()));
+  ],child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  // const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
-
+  MaterialColor color = MaterialColor(0xffbeeeff, <int, Color>{
+    50: Color(0xffbeeeff),
+    100: Color(0xffbeeeff),
+    200: Color(0xffbeeeff),
+    300: Color(0xffbeeeff),
+    400: Color(0xffbeeeff),
+    500: Color(0xffbeeeff),
+    600: Color(0xffbeeeff),
+    700: Color(0xffbeeeff),
+    800: Color(0xffbeeeff),
+    900: Color(0xffbeeeff),
+  },
+  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +49,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primaryColor: Colors.lightBlue,
+        primaryColor: color,
       ),
       home: const CryptoPage(),
       routes: {

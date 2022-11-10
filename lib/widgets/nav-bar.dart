@@ -12,9 +12,16 @@ class NavBar extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(240, 247, 255, 100),
+                image: DecorationImage(
+                  image: AssetImage('assets/image/logo.png'),
+                  fit: BoxFit.cover,
+                )
+              ),
               child: Text(
-                'Cryptown',
-                style: TextStyle(color: Colors.black, fontSize: 25),
+                'Welcome to Cryptown',
+                style: TextStyle(color: Color.fromRGBO(75, 105, 254, 100), fontSize: 16),
               ),
             ),
             ListTile(
