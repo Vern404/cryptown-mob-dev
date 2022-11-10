@@ -1,5 +1,7 @@
 import 'package:drc_cryptown/pages/exchange-list.dart';
 import 'package:drc_cryptown/pages/news.dart';
+import 'package:drc_cryptown/pages/param/crypto-details-param.dart';
+import 'package:drc_cryptown/states/crypto-details/crypto-details-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
 import 'package:drc_cryptown/states/news/news-cubit.dart';
@@ -12,6 +14,7 @@ void main() {
     BlocProvider(create: (context) => CryptoCubit()),
     BlocProvider(create: (context) => NewsCubit()),
     BlocProvider(create: (context) => ExchangeCubit()),
+    BlocProvider(create: (context) => CryptoDetailsCubit()),
   ],child: const MyApp()));
 }
 
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/crypto-list':(context) => CryptoPage(),
         '/news-list':(context) => NewsPage(),
         '/exchange-list':(context) => ExchangeList(),
+        '/crypto-details':(context) => CryptoDetailsParam(),
   },
     );
   }

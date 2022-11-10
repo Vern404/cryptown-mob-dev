@@ -7,34 +7,43 @@ class CryptoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final rgx = RegExp(r'[\D+]');
+    // final String cryptoId = rgx.firstMatch(cryptoListModel.cryptoList) ?? 'bitcoin';
+    // final String cryptoId = rgx.firstMatch(cryptoListModel.cryptoList);
+
+    // final String cryptoId = 'bitcoin';
     return Card(
-      child: Row(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: cryptoListModel.cryptoList.length,
-              itemBuilder: (context, index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(width: 0.1,),
-                    Text('${cryptoListModel.cryptoList[index].marketCapRank}'),
-                    Image.network('${cryptoListModel.cryptoList[index].image}',height: 30,width: 30,),
-                    Text('${cryptoListModel.cryptoList[index].name}'),
-                    Text('${cryptoListModel.cryptoList[index].symbol}'),
-                    Text('${cryptoListModel.cryptoList[index].currentPrice}'),
-                    SizedBox(
-                      height: 50,
-                    )
-                  ], );
-                }
-              )
-          ),
-        ]
-    )
+        child: Row(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: cryptoListModel.cryptoList.length,
+                itemBuilder: (context, index) {
+                return Row(
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:[
+                          Text('${cryptoListModel.cryptoList[index].marketCapRank}'),
+                          Image.network('${cryptoListModel.cryptoList[index].image}',height: 30,width: 30,),
+                          Text('${cryptoListModel.cryptoList[index].name}'),
+                          Text('${cryptoListModel.cryptoList[index].symbol}'),
+                          Text('${cryptoListModel.cryptoList[index].currentPrice}'),
+                          IconButton(onPressed: (){
+                            Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
+                          }, icon: Icon(Icons.navigate_next_rounded)),
+                        ]
+                      )
+                    ], );
+                  }
+                )
+            ),
+          ]
+
+      ),
     );
 }
 }

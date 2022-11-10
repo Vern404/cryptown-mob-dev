@@ -36,14 +36,14 @@ class CryptoDetails {
   final String symbol;
   final String name;
   final int marketCapRank;
-  final int currentPriceUsd;
-  final int currentPriceBtc;
-  final int currentPriceMyr;
+  final double currentPriceUsd;
+  final double currentPriceBtc;
+  final double currentPriceMyr;
   final int marketCapUsd;
   final int marketCapMyr;
-  final int totalSupply;
-  final int maxSupply;
-  final int circulatingSupply;
+  final dynamic totalSupply;
+  final dynamic maxSupply;
+  final double circulatingSupply;
   final Ath ath;
   final Ath atl;
   final List<Exchange> exchange;
@@ -55,19 +55,20 @@ class CryptoDetails {
     symbol: json["symbol"],
     name: json["name"],
     marketCapRank: json["market_cap_rank"],
-    currentPriceUsd: json["current_price_usd"],
-    currentPriceBtc: json["current_price_btc"],
-    currentPriceMyr: json["current_price_myr"],
+    currentPriceUsd: json["current_price_usd"].toDouble(),
+    currentPriceBtc: json["current_price_btc"].toDouble(),
+    currentPriceMyr: json["current_price_myr"].toDouble(),
     marketCapUsd: json["market_cap_usd"],
     marketCapMyr: json["market_cap_myr"],
-    totalSupply: json["total_supply"],
-    maxSupply: json["max_supply"],
-    circulatingSupply: json["circulating_supply"],
+    totalSupply: json["total_supply"] ?? '0',
+    maxSupply: json["max_supply"] ?? '0',
+    circulatingSupply: json["circulating_supply"].toDouble(),
     ath: Ath.fromMap(json["ath"]),
     atl: Ath.fromMap(json["atl"]),
     exchange: List<Exchange>.from(json["exchange"].map((x) => Exchange.fromMap(x))),
     description: json["description"],
   );
+
 }
 
 class Ath {
@@ -94,7 +95,6 @@ class Ath {
     changePercentageUsd: json["change_percentage_usd"].toDouble(),
     changePercentageMyr: json["change_percentage_myr"].toDouble(),
   );
-
 }
 
 class Exchange {
@@ -112,4 +112,5 @@ class Exchange {
     name: json["name"],
     tradeUrl: json["trade_url"],
   );
+
 }

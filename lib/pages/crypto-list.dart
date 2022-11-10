@@ -1,3 +1,4 @@
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
 import 'package:drc_cryptown/widgets/crypto-box.dart';
@@ -13,7 +14,7 @@ class CryptoPage extends StatefulWidget {
 }
 
 class _CryptoPageState extends State<CryptoPage> {
-  List<String> cryptoList = List.empty(growable: true);
+  List<String> result = List.empty(growable: true);
   late TextEditingController controller;
 
   @override
@@ -55,8 +56,23 @@ class _CryptoPageState extends State<CryptoPage> {
                   return Center(child: const CircularProgressIndicator());
                 }
                 if (state is CryptoLoaded) {
-                  return CryptoCard(cryptoListModel: state.cryptoListModel);
-                  }
+                    // return CryptoCard(cryptoListModel: state.cryptoListModel);
+                  List<CryptoList> toRender = controller.text.isNotEmpty
+                      ? List.from(
+                      state.cryptoListModel.cryptoList.expand((element) {
+                        if (element.name.contains(controller.text)) {
+                          return [element];
+                        }
+                        return <CryptoList>[];
+                      }))
+                      : (state.cryptoListModel.cryptoList);
+
+                  return ListView.builder(
+                      itemCount: toRender.length,
+                      itemBuilder: ((context, index) {
+                        return CryptoCard(cryptoListModel: state.cryptoListModel);
+                      }));
+                }
                 return Text(state is CryptoError
                     ? state.errorMsg
                     : 'Unknown Error');

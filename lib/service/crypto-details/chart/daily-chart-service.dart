@@ -1,20 +1,24 @@
 import 'dart:convert';
-import 'package:drc_cryptown/models/Crypto/crypto-details-model.dart';
+
+import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
 import 'package:http/http.dart' as http;
 
-class CryptoDetailsService {
+class DailyChartService {
 
-  Future<CryptoDetailsModel> fetchCryptoDetailsByCryptoId(String cryptoId) async {
-    final Uri cryptoDetailsUrl = Uri(
+  Future<DailyChart> fetchDailyChart(String cryptoId) async {
+    // final HttpClient client = new HttpClient()
+    //   ..badCertificateCallback=(X509Certificate cert,String host,int port)=>true;
+
+    final Uri DailyUrl = Uri(
       scheme: 'http',
       host: '192.168.18.79',
       // host: '192.168.100.52',
       port:5000,
-      path: '/api/crypto/cryptoDetail',
+      path: '/api/crypto/cryptoChartDaily',
     );
 
     http.Response response = await http.post(
-      cryptoDetailsUrl,
+      DailyUrl,
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -25,7 +29,7 @@ class CryptoDetailsService {
 
 
     if (response.statusCode == 200) {
-      return CryptoDetailsModel.fromJson(response.body);
+      return DailyChart.fromJson(response.body);
     } else {
       throw Exception('ERROR 404 please try again');
     }
