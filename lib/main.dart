@@ -1,6 +1,8 @@
 import 'package:drc_cryptown/pages/exchange-list.dart';
 import 'package:drc_cryptown/pages/news.dart';
+import 'package:drc_cryptown/pages/param/chart-details-param.dart';
 import 'package:drc_cryptown/pages/param/crypto-details-param.dart';
+import 'package:drc_cryptown/states/chart/daily/daily-chart-cubit.dart';
 import 'package:drc_cryptown/states/crypto-details/crypto-details-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
@@ -15,6 +17,7 @@ void main() {
     BlocProvider(create: (context) => NewsCubit()),
     BlocProvider(create: (context) => ExchangeCubit()),
     BlocProvider(create: (context) => CryptoDetailsCubit()),
+    BlocProvider(create: (context) => DailyChartCubit()),
   ],child: MyApp()));
 }
 
@@ -57,6 +60,7 @@ class MyApp extends StatelessWidget {
         '/news-list':(context) => NewsPage(),
         '/exchange-list':(context) => ExchangeList(),
         '/crypto-details':(context) => CryptoDetailsParam(),
+        '/crypto-daily-chart' :(context) => CryptoChartParam(),
   },
     );
   }

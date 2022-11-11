@@ -16,6 +16,7 @@ class CryptoDetailsModel {
 
 class CryptoDetails {
   CryptoDetails({
+    required this.cryptoId,
     required this.symbol,
     required this.name,
     required this.marketCapRank,
@@ -33,6 +34,7 @@ class CryptoDetails {
     required this.description,
   });
 
+  final String cryptoId;
   final String symbol;
   final String name;
   final int marketCapRank;
@@ -52,6 +54,7 @@ class CryptoDetails {
   factory CryptoDetails.fromJson(String str) => CryptoDetails.fromMap(json.decode(str));
 
   factory CryptoDetails.fromMap(Map<String, dynamic> json) => CryptoDetails(
+    cryptoId: json["cryptoId"],
     symbol: json["symbol"],
     name: json["name"],
     marketCapRank: json["market_cap_rank"],

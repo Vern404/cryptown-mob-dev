@@ -1,6 +1,5 @@
 
 import 'package:drc_cryptown/models/Crypto/crypto-details-model.dart';
-import 'package:drc_cryptown/widgets/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
 
@@ -18,6 +17,7 @@ class CryptoDetailsCard extends StatelessWidget {
             Text('${cryptoDetailsModel.cryptoDetails.symbol}'),
             Text('${cryptoDetailsModel.cryptoDetails.currentPriceUsd}'),
             Text('Chart'),
+            TextButton(onPressed: () => {Navigator.of(context).pushNamed('/crypto-daily-chart', arguments:cryptoDetailsModel.cryptoDetails.cryptoId)}, child: Text('View Chart') ),
             // Chart(dailyChart: dailyChart),
             Text('Description'),
             Text('${cryptoDetailsModel.cryptoDetails.description}'),

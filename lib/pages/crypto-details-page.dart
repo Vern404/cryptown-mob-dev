@@ -30,9 +30,11 @@ class CryptoDetailsPage extends StatelessWidget {
                 if (state is CryptoDetailsLoading) {
                   return Center(child: const CircularProgressIndicator());
                 }
+
                 if (state is CryptoDetailsLoaded) {
                   return CryptoDetailsCard(cryptoDetailsModel: state.cryptoDetailsModel, dailyChart: state.dailyChart);
                 }
+
                 return Text(state is CryptoDetailsError
                     ? state.errorMsg
                     : 'Unknown Error');

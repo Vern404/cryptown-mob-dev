@@ -22,7 +22,8 @@ class CryptoCard extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: cryptoListModel.cryptoList.length,
                 itemBuilder: (context, index) {
-                return Row(
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
                     children: [
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

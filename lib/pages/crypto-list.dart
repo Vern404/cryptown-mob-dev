@@ -1,4 +1,3 @@
-import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
 import 'package:drc_cryptown/widgets/crypto-box.dart';
@@ -14,7 +13,8 @@ class CryptoPage extends StatefulWidget {
 }
 
 class _CryptoPageState extends State<CryptoPage> {
-  List<String> result = List.empty(growable: true);
+  // List<CryptoList> searchResult = searchList;
+  // List<CryptoList> cryptoList = allCrypto;
   late TextEditingController controller;
 
   @override
@@ -30,13 +30,15 @@ class _CryptoPageState extends State<CryptoPage> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        title: Text('Crypto List'),
+        centerTitle: true,
+        title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
       ),
       body: Column(
         children: [
           TextField(
-            onChanged: (_) {
-              setState(() {});
+            onChanged: (_){
+              setState(() {
+              });
             },
             controller: controller,
             decoration: InputDecoration(
@@ -56,22 +58,41 @@ class _CryptoPageState extends State<CryptoPage> {
                   return Center(child: const CircularProgressIndicator());
                 }
                 if (state is CryptoLoaded) {
-                    // return CryptoCard(cryptoListModel: state.cryptoListModel);
-                  List<CryptoList> toRender = controller.text.isNotEmpty
-                      ? List.from(
-                      state.cryptoListModel.cryptoList.expand((element) {
-                        if (element.name.contains(controller.text)) {
-                          return [element];
-                        }
-                        return <CryptoList>[];
-                      }))
-                      : (state.cryptoListModel.cryptoList);
+                  return CryptoCard(cryptoListModel: state.cryptoListModel);
+                  // if (searchResult.length != 0 || controller.text.isNotEmpty) {
+                  //   return CryptoCard(
+                  //       cryptoListModel: state.cryptoListModel);
+                  // } else {
+                  //   return new ListView.builder(
+                  //     itemCount: searchResult.length,
+                  //     itemBuilder: (context, i) {
+                  //       return new Card(
+                  //         child: Column(
+                  //         children: [
+                  //           Text(searchResult[i].cryptoId,)
+                  //         ],
+                  //         )
+                  //       );
+                  //     },
+                  //   );
+                  // }
+                  //
+                  // List<CryptoList> toRender = controller.text.isNotEmpty
+                  //     ? List.from(
+                  //     state.cryptoListModel.cryptoList.expand((data) {
+                  //       if (data.name.contains(controller.text)) {
+                  //         return [data];
+                  //       }
+                  //       return <CryptoList>[];
+                  //     }))
+                  //     : (state.cryptoListModel.cryptoList);
+                  //
+                  // return ListView.builder(
+                  //     itemCount: toRender.length,
+                  //     itemBuilder: ((context, index) {
+                  //       return CryptoCard(cryptoListModel:toRender[index]);
+                  //     }));
 
-                  return ListView.builder(
-                      itemCount: toRender.length,
-                      itemBuilder: ((context, index) {
-                        return CryptoCard(cryptoListModel: state.cryptoListModel);
-                      }));
                 }
                 return Text(state is CryptoError
                     ? state.errorMsg
