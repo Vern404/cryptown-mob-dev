@@ -6,10 +6,11 @@ class CryptoDetailsService {
 
   Future<CryptoDetailsModel> fetchCryptoDetailsByCryptoId(String cryptoId) async {
     final Uri cryptoDetailsUrl = Uri(
-      scheme: 'http',
-      host: '192.168.18.79',
+      scheme: 'https',
+      // host: '192.168.18.79',
       // host: '192.168.100.52',
-      port:5000,
+      // port:5000,
+      host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoDetail',
     );
 

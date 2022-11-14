@@ -4,17 +4,12 @@ import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 class CryptoService {
 
   Future<CryptoListModel> fetchCryptoList() async {
-    // final HttpClient client = new HttpClient()
-    //   ..badCertificateCallback=(X509Certificate cert,String host,int port)=>true;
-
     final Uri cryptoUrl = Uri(
-      scheme: 'http',
-      host: '192.168.18.79',
-      // host: '192.168.100.52',
-      port:5000,
+      scheme: 'https',
+      host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoList',
     );
-
+    print(cryptoUrl);
     http.Response response = await http.get(cryptoUrl);
 
 

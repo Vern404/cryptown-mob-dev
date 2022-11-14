@@ -6,9 +6,10 @@ class ExchangeService {
   Future<ExchangeListModel> fetchExchangeList() async {
 
     final Uri exchangeUrl = Uri(
-      scheme: 'http',
-      host: '192.168.18.79',
-      port:5000,
+      scheme: 'https',
+      // host: '192.168.18.79',
+      // port:5000,
+      host: 'api.cryptown-besquare.one',
       path: '/api/exchange',
     );
 
