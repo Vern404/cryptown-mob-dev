@@ -45,7 +45,9 @@ class _LineChartWidgetState extends State<LineChartWidget> {
             child: Column(
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height,
+                  // height: MediaQuery.of(context).size.height,
+                  // alignment: Alignment.center,
+                  height: 630,
                     padding: const EdgeInsets.all(8.0),
                     child: SfCartesianChart(
                         zoomPanBehavior: _zoomPanBehavior,
