@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         '/news-list':(context) => NewsPage(),
         '/exchange-list':(context) => ExchangeList(),
         '/crypto-details':(context) => CryptoDetailsParam(),
-        '/crypto-daily-chart' :(context) => CryptoChartParam(),
+        '/crypto-chart' :(context) => CryptoChartParam(),
         '/sign-in':(context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
   },

@@ -11,9 +11,6 @@ class DailyChartService {
 
     final Uri DailyUrl = Uri(
       scheme: 'https',
-      // host: '192.168.18.79',
-      // host: '192.168.100.52',
-      // port:5000,
       host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoChartDaily',
     );

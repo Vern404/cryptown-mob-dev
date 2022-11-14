@@ -32,7 +32,7 @@ class CryptoDetailsPage extends StatelessWidget {
                 }
 
                 if (state is CryptoDetailsLoaded) {
-                  return CryptoDetailsCard(cryptoDetailsModel: state.cryptoDetailsModel, dailyChart: state.dailyChart);
+                  return CryptoDetailsCard(cryptoDetailsModel: state.cryptoDetailsModel);
                 }
 
                 return Text(state is CryptoDetailsError

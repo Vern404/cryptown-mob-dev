@@ -1,12 +1,11 @@
 
 import 'package:drc_cryptown/models/Crypto/crypto-details-model.dart';
 import 'package:flutter/material.dart';
-import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
 
 class CryptoDetailsCard extends StatelessWidget {
-  const CryptoDetailsCard({required this.cryptoDetailsModel, required this.dailyChart, Key? key}) : super(key: key);
+  const CryptoDetailsCard({required this.cryptoDetailsModel, Key? key}) : super(key: key);
   final CryptoDetailsModel cryptoDetailsModel;
-  final DailyChart dailyChart;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +16,12 @@ class CryptoDetailsCard extends StatelessWidget {
             Text('${cryptoDetailsModel.cryptoDetails.symbol}'),
             Text('${cryptoDetailsModel.cryptoDetails.currentPriceUsd}'),
             Text('Chart'),
-            TextButton(onPressed: () => {Navigator.of(context).pushNamed('/crypto-daily-chart', arguments:cryptoDetailsModel.cryptoDetails.cryptoId)}, child: Text('View Chart') ),
-            // Chart(dailyChart: dailyChart),
+            ElevatedButton(
+                onPressed: () => {Navigator.of(context).pushNamed(
+                    '/crypto-chart',
+                    arguments:cryptoDetailsModel.cryptoDetails.cryptoId
+                )},
+                child: Text('View Chart') ),
             Text('Description'),
             Text('${cryptoDetailsModel.cryptoDetails.description}'),
 

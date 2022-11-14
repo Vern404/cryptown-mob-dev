@@ -1,6 +1,6 @@
 import 'package:drc_cryptown/states/chart/daily/daily-chart-cubit.dart';
 import 'package:drc_cryptown/states/chart/daily/daily-chart-state.dart';
-import 'package:drc_cryptown/widgets/chart.dart';
+import 'package:drc_cryptown/widgets/line-chart.dart';
 import 'package:drc_cryptown/widgets/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +29,12 @@ class ChartPage extends StatelessWidget {
               }
 
               if (state is DailyChartLoaded) {
-              return Chart(dailyChart: state.dailyChart);
+              // return Chart(dailyChart: state.dailyChart);
+                return LineChartWidget(
+                    dailyChart: state.dailyChart,
+                    weeklyChart: state.weeklyChart,
+                    maxChart: state.maxChart
+                );
               }
 
               return Text(state is DailyChartError

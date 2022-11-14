@@ -5,14 +5,9 @@ import 'package:http/http.dart' as http;
 class MaxChartService {
 
   Future<MaxChart> fetchMaxChart(String cryptoId) async {
-    // final HttpClient client = new HttpClient()
-    //   ..badCertificateCallback=(X509Certificate cert,String host,int port)=>true;
 
     final Uri MaxUrl = Uri(
-      scheme: 'http',
-      // host: '192.168.18.79',
-      // host: '192.168.100.52',
-      // port:5000,
+      scheme: 'https',
       host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoChartWeekly',
     );

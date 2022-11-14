@@ -1,52 +1,148 @@
-//
-// import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
-// import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
-//
-// class LineChart extends StatefulWidget {
-//   const LineChart({required this.dailyChart}) : super(key: key);
-//   final DailyChart dailyChart;
-//
-//   @override
-//   State<LineChart> createState() => _LineChartState();
-// }
-//
-// class _LineChartState extends State<LineChart> {
-//
-//   // List <dailyChart> _chartData;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//         child: Scaffold(
-//       body:SfCartesianChart(
-//           primaryXAxis: CategoryAxis(),
-//
-//           series: <LineSeries<SalesData, String>>[
-//             LineSeries<SalesData, String>(
-//               // Bind data source
-//                 dataSource:  <SalesData>[
-//                   SalesData('Jan', 35),
-//                   SalesData('Feb', 28),
-//                   SalesData('Mar', 34),
-//                   SalesData('Apr', 32),
-//                   SalesData('May', 40)
-//                 ],
-//               xValueMapper: (SalesData sales, _) => sales.year,
-//               yValueMapper: (SalesData sales, _) => sales.sales)
-//         ]
-//       ),
-//     ));
-//
-//   }
-//
-//   class SalesData {
-//   SalesData(this.year, this.sales);
-//   final String year;
-//   final double sales;
-//   }
-//   // List<dailyChart> getChartData(DailyChart data){
-//   //   final List<dailyChart> chartData =
-//   // return chartData;
-//   // }
-// }
+
+import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
+import 'package:drc_cryptown/models/Crypto/crypto-chart/max-chart.dart';
+import 'package:drc_cryptown/models/Crypto/crypto-chart/weekly-chart.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+class LineChartWidget extends StatefulWidget {
+  const LineChartWidget({required this.dailyChart, required this.weeklyChart, required this.maxChart, Key? key}) : super(key: key);
+  final DailyChart dailyChart;
+  final WeeklyChart weeklyChart;
+  final MaxChart maxChart;
+
+  @override
+  State<LineChartWidget> createState() {
+    return _LineChartWidgetState();
+  }
+}
+
+class _LineChartWidgetState extends State<LineChartWidget> {
+  late ZoomPanBehavior _zoomPanBehavior;
+  late TooltipBehavior _tooltipBehavior;
+  ChartSeriesController? _chartSeriesController1, _chartSeriesController2, _chartSeriesController3;
+
+  @override
+  void initState() {
+    _zoomPanBehavior = ZoomPanBehavior(
+        enablePanning: true,
+        enablePinching: true,
+        zoomMode: ZoomMode.x
+    );
+    _tooltipBehavior = TooltipBehavior(
+      enable: true,
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+          body: Container(
+            // height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                    padding: const EdgeInsets.all(8.0),
+                    child: SfCartesianChart(
+                        zoomPanBehavior: _zoomPanBehavior,
+                        tooltipBehavior: _tooltipBehavior,
+                        primaryXAxis: NumericAxis(),
+                        primaryYAxis: NumericAxis(
+                            numberFormat: NumberFormat.simpleCurrency()
+                        ),
+                        legend: Legend(
+                          isVisible: true,
+                          position: LegendPosition.bottom,
+                          title: LegendTitle(
+                            text: 'CryptoChart',
+                          )
+                        ),
+                        series: <ChartSeries>[
+                          LineSeries<List<double>, double>(
+                            name: 'Current Price',
+                            dataSource: widget.dailyChart.cryptoChart,
+                            xValueMapper: (List<double> chartData, _) => chartData[0],
+                            yValueMapper: (List<double> chartData, _) => chartData[1],
+                            onRendererCreated: (ChartSeriesController controller){
+                              _chartSeriesController1 = controller;
+                            },
+                            markerSettings: MarkerSettings(
+                                isVisible: true
+                            ),
+                            enableTooltip: true,
+                            animationDuration: 4500,
+                            animationDelay: 2000,
+                          ),
+                          LineSeries<List<double>, double>(
+                            name: 'Current Price',
+                            dataSource: widget.weeklyChart.cryptoChart,
+                            xValueMapper: (List<double> chartData, _) => chartData[0],
+                            yValueMapper: (List<double> chartData, _) => chartData[1],
+                            onRendererCreated: (ChartSeriesController controller){
+                              _chartSeriesController2 = controller;
+                            },
+                            markerSettings: MarkerSettings(
+                                isVisible: true
+                            ),
+                            enableTooltip: true,
+                            animationDuration: 4500,
+                            animationDelay: 2000,
+                          ),
+                          LineSeries<List<double>, double>(
+                            name: 'Current Price',
+                            dataSource: widget.maxChart.cryptoChart,
+                            xValueMapper: (List<double> chartData, _) => chartData[0],
+                            yValueMapper: (List<double> chartData, _) => chartData[1],
+                            onRendererCreated: (ChartSeriesController controller){
+                              _chartSeriesController3 = controller;
+                            },
+                            markerSettings: MarkerSettings(
+                                isVisible: true
+                            ),
+                            enableTooltip: true,
+                            animationDuration: 4500,
+                            animationDelay: 2000,
+                          ),
+                        ]
+                    ),
+                  ),
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _chartSeriesController1?.animate();
+                            },
+                            child: Text('Daily'),
+                          )),
+                      Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _chartSeriesController2?.animate();
+                            },
+                            child: Text('Weekly'),
+                          )),
+                      Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _chartSeriesController3?.animate();
+                            },
+                            child: Text('Max'),
+                          ))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+
+        ),
+
+    );
+  }
+}

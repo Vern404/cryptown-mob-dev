@@ -28,7 +28,7 @@ class _ChartState extends State<Chart> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('${widget.dailyChart.cryptoChart}'),
+        // Text('${widget.dailyChart.cryptoChart}'),
         Stack(
           children: <Widget>[
             // Text('${widget.dailyChart}'),
@@ -48,15 +48,14 @@ class _ChartState extends State<Chart> {
                     top: 24,
                     bottom: 12,
                   ),
-                  // child: LineChart(
-                  //   showWeekly ? WeeklyChartData() : DailyChartData(widget.dailyChart),
-                  // ),
+                  child: LineChart(
+                    showWeekly ? WeeklyChartData() : DailyChartData(widget.dailyChart),
+                  ),
                 ),
               ),
             ),
             SizedBox(
-              width: 60,
-              height: 34,
+
               child: TextButton(
                 onPressed: () {
                   setState(() {
