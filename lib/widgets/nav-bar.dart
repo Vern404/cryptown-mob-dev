@@ -52,12 +52,12 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('Profile Settings'),
-              onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
+              onTap: () => {Navigator.of(context).pushNamed('/sign-in')},
             ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
-              onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
+              onTap: () => {Navigator.of(context).pushNamed('/sign-up')},
             ),
           ],
         ),
