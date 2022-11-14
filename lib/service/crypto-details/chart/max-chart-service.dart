@@ -10,9 +10,10 @@ class MaxChartService {
 
     final Uri MaxUrl = Uri(
       scheme: 'http',
-      host: '192.168.18.79',
+      // host: '192.168.18.79',
       // host: '192.168.100.52',
-      port:5000,
+      // port:5000,
+      host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoChartWeekly',
     );
 
