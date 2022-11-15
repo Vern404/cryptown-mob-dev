@@ -1,9 +1,12 @@
 import 'package:drc_cryptown/pages/exchange-list.dart';
+import 'package:drc_cryptown/pages/forum.dart';
 import 'package:drc_cryptown/pages/news.dart';
 import 'package:drc_cryptown/pages/param/chart-details-param.dart';
 import 'package:drc_cryptown/pages/param/crypto-details-param.dart';
+import 'package:drc_cryptown/pages/profile.dart';
 import 'package:drc_cryptown/pages/sign-in.dart';
 import 'package:drc_cryptown/pages/sign-up.dart';
+import 'package:drc_cryptown/pages/watch-list.dart';
 import 'package:drc_cryptown/states/chart/daily/daily-chart-cubit.dart';
 import 'package:drc_cryptown/states/crypto-details/crypto-details-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
@@ -55,8 +58,10 @@ class MyApp extends StatelessWidget {
         '/crypto-chart' :(context) => CryptoChartParam(),
         '/sign-in':(context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
+        '/profile': (context) => UserProfilePage(),
+        '/forum': (context) => ForumPage(),
+        '/watch-list': (context) => WatchListPage(),
   },
     );
   }
 }
-

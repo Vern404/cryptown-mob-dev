@@ -32,7 +32,7 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.star),
               title: Text('Watchlist'),
-              onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
+              onTap: () => {Navigator.of(context).pushNamed('/watch-list')},
             ),
             ListTile(
               leading: Icon(Icons.tips_and_updates),
