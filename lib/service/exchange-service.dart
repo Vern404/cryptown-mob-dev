@@ -7,8 +7,6 @@ class ExchangeService {
 
     final Uri exchangeUrl = Uri(
       scheme: 'https',
-      // host: '192.168.18.79',
-      // port:5000,
       host: 'api.cryptown-besquare.one',
       path: '/api/exchange',
     );

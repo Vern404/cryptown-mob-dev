@@ -7,8 +7,6 @@ class NewsService {
 
     final Uri newsUrl = Uri(
       scheme: 'https',
-      // host: '192.168.18.79',
-      // port:5000,
       host: 'api.cryptown-besquare.one',
       path: '/api/news',
     );
