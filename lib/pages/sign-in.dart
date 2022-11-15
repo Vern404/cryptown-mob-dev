@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
+
 import 'package:drc_cryptown/widgets/sign-in.dart';
 import 'package:flutter/material.dart';
 
@@ -10,25 +10,18 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  late TextEditingController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = TextEditingController();
-  }
-
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer: NavBar(),
-      appBar: AppBar(
-        centerTitle: true,
-        title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
-      ),
+        // resizeToAvoidBottomInset: false,
       body:Container(
-          child:SignIn()
+          child:Column(
+            children: [
+              Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 300,),
+              signIn(),
+            ],
+          )
       )
     );
   }

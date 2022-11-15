@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
+
 import 'package:drc_cryptown/widgets/sign-up.dart';
 import 'package:flutter/material.dart';
 
@@ -21,15 +21,15 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavBar(),
-        appBar: AppBar(
-          centerTitle: true,
-          title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
-        ),
+        // resizeToAvoidBottomInset: false,
         body:Container(
-          child: SignUp(),
+            child:Column(
+              children: [
+                Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 300,),
+                SignUp(),
+              ],
+            )
         )
-
     );
   }
 }
