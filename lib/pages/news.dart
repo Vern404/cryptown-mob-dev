@@ -1,6 +1,6 @@
 import 'package:drc_cryptown/states/news/news-cubit.dart';
 import 'package:drc_cryptown/states/news/news-state.dart';
-import 'package:drc_cryptown/widgets/nav-bar.dart';
+import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:drc_cryptown/widgets/news-box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

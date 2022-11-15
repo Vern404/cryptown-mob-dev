@@ -1,4 +1,4 @@
-import 'package:drc_cryptown/widgets/nav-bar.dart';
+import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:drc_cryptown/widgets/sign-up.dart';
 import 'package:flutter/material.dart';
 

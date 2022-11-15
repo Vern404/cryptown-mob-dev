@@ -1,8 +1,8 @@
 
 import 'package:drc_cryptown/states/crypto-details/crypto-details-cubit.dart';
 import 'package:drc_cryptown/states/crypto-details/crypto-details-state.dart';
-import 'package:drc_cryptown/widgets/crypto-details.dart';
-import 'package:drc_cryptown/widgets/nav-bar.dart';
+import 'package:drc_cryptown/widgets/crypto/crypto-details.dart';
+import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

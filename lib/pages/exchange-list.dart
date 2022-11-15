@@ -1,7 +1,7 @@
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-state.dart';
 import 'package:drc_cryptown/widgets/exchange-box.dart';
-import 'package:drc_cryptown/widgets/nav-bar.dart';
+import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,7 @@
 import 'package:drc_cryptown/states/chart/daily/daily-chart-cubit.dart';
 import 'package:drc_cryptown/states/chart/daily/daily-chart-state.dart';
-import 'package:drc_cryptown/widgets/line-chart.dart';
-import 'package:drc_cryptown/widgets/nav-bar.dart';
+import 'package:drc_cryptown/widgets/crypto/line-chart.dart';
+import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
