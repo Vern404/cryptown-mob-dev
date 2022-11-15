@@ -42,7 +42,7 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.forum),
               title: Text('Forum'),
-              onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
+              onTap: () => {Navigator.of(context).pushNamed('/forum')},
             ),
             ListTile(
               leading: Icon(Icons.newspaper),
@@ -52,12 +52,12 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('Profile Settings'),
-              onTap: () => {Navigator.of(context).pushNamed('/sign-in')},
+              onTap: () => {Navigator.of(context).pushNamed('/profile')},
             ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
-              onTap: () => {Navigator.of(context).pushNamed('/sign-up')},
+              onTap: () => {Navigator.of(context).pushNamed('/sign-in')},
             ),
           ],
         ),
