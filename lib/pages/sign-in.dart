@@ -13,16 +13,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-        // resizeToAvoidBottomInset: false,
-      body:Container(
-          child:Column(
-            children: [
-              Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 300,),
-              signIn(),
-            ],
-          )
-      )
-    );
+    return signIn();
   }
 }

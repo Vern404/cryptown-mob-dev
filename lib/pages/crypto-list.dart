@@ -5,6 +5,8 @@ import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// import '../models/Crypto/cryto-model.dart';
+
 class CryptoPage extends StatefulWidget {
   const CryptoPage({Key? key}) : super(key: key);
 
@@ -13,8 +15,8 @@ class CryptoPage extends StatefulWidget {
 }
 
 class _CryptoPageState extends State<CryptoPage> {
-  // List<CryptoList> searchResult = searchList;
-  // List<CryptoList> cryptoList = allCrypto;
+  // List<String> searchResult = [];
+  // List<CryptoList> cryptoList = [];
   late TextEditingController controller;
 
   @override
@@ -60,8 +62,7 @@ class _CryptoPageState extends State<CryptoPage> {
                 if (state is CryptoLoaded) {
                   return CryptoCard(cryptoListModel: state.cryptoListModel);
                   // if (searchResult.length != 0 || controller.text.isNotEmpty) {
-                  //   return CryptoCard(
-                  //       cryptoListModel: state.cryptoListModel);
+                  //   return CryptoCard(cryptoListModel: state.cryptoListModel);
                   // } else {
                   //   return new ListView.builder(
                   //     itemCount: searchResult.length,
@@ -69,14 +70,14 @@ class _CryptoPageState extends State<CryptoPage> {
                   //       return new Card(
                   //         child: Column(
                   //         children: [
-                  //           Text(searchResult[i].cryptoId,)
+                  //           Text(searchResult[i],)
                   //         ],
                   //         )
                   //       );
                   //     },
                   //   );
                   // }
-                  //
+
                   // List<CryptoList> toRender = controller.text.isNotEmpty
                   //     ? List.from(
                   //     state.cryptoListModel.cryptoList.expand((data) {
