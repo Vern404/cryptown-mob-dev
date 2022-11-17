@@ -1,17 +1,20 @@
 import 'dart:convert';
 
-class UserLogin {
-  UserLogin({
+class UserSignIn {
+  UserSignIn({
+    required this.user,
     required this.email,
     required this.userJwt,
   });
 
+  final String user;
   final String email;
   final String userJwt;
 
-  factory UserLogin.fromJson(String str) => UserLogin.fromMap(json.decode(str));
+  factory UserSignIn.fromJson(String str) => UserSignIn.fromMap(json.decode(str));
 
-  factory UserLogin.fromMap(Map<String, dynamic> json) => UserLogin(
+  factory UserSignIn.fromMap(Map<String, dynamic> json) => UserSignIn(
+    user: json["user"],
     email: json["email"],
     userJwt: json["userJwt"],
   );

@@ -58,15 +58,6 @@ class _signInState extends State<signIn> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return "* Required";
-                    //   } else if (!regex.hasMatch(value)) {
-                    //     return "Invalid Password";
-                    //   } else {
-                    //     return "Valid Password";
-                    //   }
-                    // },
                     validator: MultiValidator([
                       RequiredValidator(errorText: "* Required"),
                       MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
