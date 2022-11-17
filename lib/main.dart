@@ -1,3 +1,4 @@
+
 import 'package:drc_cryptown/pages/exchange-list.dart';
 import 'package:drc_cryptown/pages/forum.dart';
 import 'package:drc_cryptown/pages/news.dart';
@@ -13,6 +14,8 @@ import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
 import 'package:drc_cryptown/states/news/news-cubit.dart';
 import 'package:drc_cryptown/pages/crypto-list.dart';
+import 'package:drc_cryptown/states/user/sign-in/sign-in-cubit.dart';
+import 'package:drc_cryptown/states/user/sign-up/sign-up-cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +26,9 @@ void main() {
     BlocProvider(create: (context) => ExchangeCubit()),
     BlocProvider(create: (context) => CryptoDetailsCubit()),
     BlocProvider(create: (context) => DailyChartCubit()),
+    BlocProvider(create: (context) => SignUpCubit()),
+    BlocProvider(create: (context) => SignInCubit()),
+
   ],child: MyApp()));
 }
 
@@ -47,7 +53,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cryptown',
       theme: ThemeData(
-        primaryColor: color,
+        primaryColor: Color.fromRGBO(146, 203, 248, 1.0),
+        scaffoldBackgroundColor: Color.fromRGBO(180, 222, 255, 1.0)
       ),
       home: const SignInPage(),
       routes: {

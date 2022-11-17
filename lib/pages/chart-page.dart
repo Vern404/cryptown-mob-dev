@@ -29,7 +29,6 @@ class ChartPage extends StatelessWidget {
               }
 
               if (state is DailyChartLoaded) {
-              // return Chart(dailyChart: state.dailyChart);
                 return LineChartWidget(
                     dailyChart: state.dailyChart,
                     weeklyChart: state.weeklyChart,

@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -11,7 +11,23 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String password = '';
+
+  late String? email,username,password,confirmPassword;
+
+  bool _isHidden1 = true;
+
+  void _togglePassword() {
+    setState(() {
+      _isHidden1 = !_isHidden1;
+    });
+  }
+  bool _isHidden2 = true;
+
+  void _toggleConfirmPassword() {
+    setState(() {
+      _isHidden2 = !_isHidden2;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +35,7 @@ class _SignUpState extends State<SignUp> {
         physics: BouncingScrollPhysics(),
         child:Column(
           children: [
-            Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 300,),
+            Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 250,),
             Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               key: formkey,
@@ -37,6 +53,7 @@ class _SignUpState extends State<SignUp> {
                             labelText: 'Userame',
                             hintText: 'john123',
                           ),
+                          onSaved: (value) => username = value,
                         ),
                       ),
                       Padding(
@@ -51,10 +68,8 @@ class _SignUpState extends State<SignUp> {
                             labelText: 'Email Address',
                             hintText: 'example@example.com.my',
                           ),
+                          onSaved: (value) => email = value,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -67,25 +82,40 @@ class _SignUpState extends State<SignUp> {
                             PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
                             PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
                           ]),
+                          obscureText: _isHidden1,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Password',
                             hintText: 'Enter your password',
-                          ),
-                          onChanged: (value){
-                            password = value;
-                          },
+                            suffix: InkWell(
+                              onTap: _togglePassword,
+                              child: Icon(
+                                _isHidden1
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),),
+                          onChanged: (value)=> password = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, password),
+                          validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, password!),
+                          obscureText: _isHidden2,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Confirm Password',
                             hintText: 'Re-enter Password again',
-                          ),
+                            suffix: InkWell(
+                              onTap: _toggleConfirmPassword,
+                              child: Icon(
+                                _isHidden2
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                          ),),
+                          onChanged: (value) => confirmPassword = value,
                         ),
                       ),
                       Column(
@@ -94,8 +124,31 @@ class _SignUpState extends State<SignUp> {
                           ElevatedButton(
                               onPressed: (){
                                 if (formkey.currentState!.validate()) {
+                                  //show snackbar to indicate loading
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: const Text('Processing Data'),
+                                  backgroundColor: Colors.green.shade300,
+                                  ));
+
+                                  //the user data to be sent
+                                  Map<String, dynamic> userData = {
+                                    "Email": email,
+                                    "Username" : username,
+                                    "Password": password,
+                                    "confirm_password" : confirmPassword,
+                                  };
+
+                                  final response = post(
+                                      // Uri.parse('https//api.cryptown-besquare.one/api/user/signup'),
+                                      Uri.parse('http://localhost:5000/api/user/signup'),
+                                      headers: <String, String>{
+                                        'Content-Type': 'application/json',
+                                      },
+                                      body: userData,
+                                  );
+
                                 Navigator.of(context).pushNamed('/crypto-list');
-                                print("Validated");
+                                  print("Validated");
                                 }else{
                                   print("Not Validated");
                                 }
@@ -115,6 +168,7 @@ class _SignUpState extends State<SignUp> {
             ),
     ])
     )
+
     );
   }
 }
