@@ -15,13 +15,11 @@ class UserService {
         path: '/api/user/signup',
       );
       Response response = await post(
-        // 'https://api.cryptown-besquare.one/api/user/signup',
-        //   Uri.parse('http://192.168.18.79:5000/api/user/signup'),
         registerUrl,
-          body: data,
-          headers: <String, String>{
-            'Content-Type': 'application/json',
-          },
+        body: data,
+        headers: <String, String>{
+         'Content-Type': 'application/json',
+        },
       );
       switch (response.statusCode) {
         case 200:
@@ -44,8 +42,6 @@ class UserService {
         path: '/api/user/login',
       );
       Response response = await post(
-        // // 'https://api.cryptown-besquare.one/api/user/signup',
-        // Uri.parse('http://192.168.18.79:5000/api/user/login'),
         loginUrl,
         body: jsonEncode(data),
         headers: <String, String>{
@@ -55,9 +51,8 @@ class UserService {
       print(response.body);
       switch (response.statusCode) {
         case 200:
-          // final data = json.decode(response.body);
-          // return UserSignIn.fromMap(data);
-          return response.body;
+          final data = jsonDecode(response.body);
+          return data;
         default:
           throw Exception(response.reasonPhrase);
       }
@@ -69,9 +64,15 @@ class UserService {
 
   Future<dynamic> getUserProfileData(String accessToken) async {
     try {
+      final Uri profileUrl = Uri(
+        scheme: 'http',
+        // host: 'api.cryptown-besquare.one',
+        host: '192.168.18.79',
+        port: 5000,
+        path: '/api/user/profile',
+      );
       Response response = await get(
-        // 'http://192.168.18.61:5000/api/user/profile',
-        Uri.parse('http://192.168.18.79:5000/api/user/profile'),
+        profileUrl,
         headers: {
           'Authorization': 'Bearer $accessToken'
         },

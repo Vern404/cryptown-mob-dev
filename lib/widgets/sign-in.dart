@@ -1,6 +1,8 @@
 
+import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class signIn extends StatefulWidget {
   const signIn({Key? key}) : super(key: key);
@@ -20,8 +22,41 @@ class _signInState extends State<signIn> {
   //?=.*[!****] - allow special characters
   //{8,} at least 8 characters
 
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  //get the api service
+  final UserService _apiClient = UserService();
+
+  Future<void> login() async {
+    if (formkey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      Map<String, dynamic> userData = {
+        "email":_emailController.text,
+        "password": _passwordController.text,
+      };
+
+      dynamic res = await _apiClient.login(userData);
+
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      String accessToken = res["userJwt"];
+
+      if (accessToken != null) {
+        // sharedPreferences.setString("userJWT",  res['userJWT']);
+        // String accessToken = res['userJWT'];
+        Navigator.of(context).pushNamed('/crypto-list');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Login Failed'),
+          backgroundColor: Colors.red.shade300,
+        ));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +113,7 @@ class _signInState extends State<signIn> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                        onPressed: (){
-                          if (formkey.currentState!.validate()) {
-                            Navigator.of(context).pushNamed('/crypto-list');
-                            print("Login Successful");
-                          }else{
-                            print("Login Failed to validation failed");
-                          }
-                        },
+                      onPressed: login,
                         child: Text('Login')),
                     TextButton(
                         onPressed: (){

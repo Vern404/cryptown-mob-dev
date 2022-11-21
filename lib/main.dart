@@ -28,7 +28,7 @@ void main() {
     BlocProvider(create: (context) => DailyChartCubit()),
     BlocProvider(create: (context) => SignUpCubit()),
     BlocProvider(create: (context) => SignInCubit()),
-
+    // BlocProvider(create: (context) => ViewProfileCubit()),
   ],child: MyApp()));
 }
 

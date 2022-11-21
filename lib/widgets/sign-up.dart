@@ -1,10 +1,9 @@
+import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:http/http.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
-
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -12,7 +11,12 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  late String? email,username,password,confirmPassword;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  final UserService _apiClient = UserService();
 
   bool _isHidden1 = true;
 
@@ -27,6 +31,38 @@ class _SignUpState extends State<SignUp> {
     setState(() {
       _isHidden2 = !_isHidden2;
     });
+  }
+
+  Future<void> Register() async {
+    if (formkey.currentState!.validate()) {
+      //show snackbar to indicate loading
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      //the user data to be sent
+      Map<String, dynamic> userData = {
+        "email": emailController.text,
+        "username": usernameController.text,
+        "password": passwordController.text,
+        "confirm_password": confirmPasswordController.text,
+
+      };
+
+      dynamic res = await _apiClient.registerUser(userData);
+
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      if (res['ErrorCode'] == null) {
+        Navigator.of(context).pushNamed('/crypto-list');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error: ${res['Message']}'),
+          backgroundColor: Colors.red.shade300,
+        ));
+      }
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -44,6 +80,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          controller: usernameController,
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
                             PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
@@ -53,12 +90,12 @@ class _SignUpState extends State<SignUp> {
                             labelText: 'Userame',
                             hintText: 'john123',
                           ),
-                          onSaved: (value) => username = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          controller: emailController,
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
                             EmailValidator(errorText: "Enter valid email format"),
@@ -68,12 +105,12 @@ class _SignUpState extends State<SignUp> {
                             labelText: 'Email Address',
                             hintText: 'example@example.com.my',
                           ),
-                          onSaved: (value) => email = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          controller: passwordController,
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
                             MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
@@ -95,13 +132,13 @@ class _SignUpState extends State<SignUp> {
                                     : Icons.visibility_off,
                               ),
                             ),),
-                          onChanged: (value)=> password = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, password!),
+                          controller: confirmPasswordController,
+                          validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, passwordController.text ),
                           obscureText: _isHidden2,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -115,44 +152,13 @@ class _SignUpState extends State<SignUp> {
                                     : Icons.visibility_off,
                               ),
                           ),),
-                          onChanged: (value) => confirmPassword = value,
                         ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
-                              onPressed: (){
-                                if (formkey.currentState!.validate()) {
-                                  //show snackbar to indicate loading
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: const Text('Processing Data'),
-                                  backgroundColor: Colors.green.shade300,
-                                  ));
-
-                                  //the user data to be sent
-                                  Map<String, dynamic> userData = {
-                                    "Email": email,
-                                    "Username" : username,
-                                    "Password": password,
-                                    "confirm_password" : confirmPassword,
-                                  };
-
-                                  final response = post(
-                                      // Uri.parse('https//api.cryptown-besquare.one/api/user/signup'),
-                                      Uri.parse('http://localhost:5000/api/user/signup'),
-                                      headers: <String, String>{
-                                        'Content-Type': 'application/json',
-                                      },
-                                      body: userData,
-                                  );
-
-                                Navigator.of(context).pushNamed('/crypto-list');
-                                  print("Validated");
-                                }else{
-                                  print("Not Validated");
-                                }
-                              },
+                              onPressed: Register,
                               child: Text('Sign Up')),
                           TextButton(
                               onPressed: (){
