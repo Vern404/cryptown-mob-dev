@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       title: 'Cryptown',
       theme: ThemeData(
         primaryColor: Color.fromRGBO(146, 203, 248, 1.0),
-        scaffoldBackgroundColor: Color.fromRGBO(180, 222, 255, 1.0)
+        scaffoldBackgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
       ),
       home: const SignInPage(),
       routes: {
