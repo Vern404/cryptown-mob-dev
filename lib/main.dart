@@ -14,8 +14,9 @@ import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
 import 'package:drc_cryptown/states/news/news-cubit.dart';
 import 'package:drc_cryptown/pages/crypto-list.dart';
-import 'package:drc_cryptown/states/user/sign-in/sign-in-cubit.dart';
-import 'package:drc_cryptown/states/user/sign-up/sign-up-cubit.dart';
+// import 'package:drc_cryptown/states/user/sign-in/sign-in-cubit.dart';
+// import 'package:drc_cryptown/states/user/sign-up/sign-up-cubit.dart';
+import 'package:drc_cryptown/pages/update-profile-page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,8 +27,8 @@ void main() {
     BlocProvider(create: (context) => ExchangeCubit()),
     BlocProvider(create: (context) => CryptoDetailsCubit()),
     BlocProvider(create: (context) => DailyChartCubit()),
-    BlocProvider(create: (context) => SignUpCubit()),
-    BlocProvider(create: (context) => SignInCubit()),
+    // BlocProvider(create: (context) => SignUpCubit()),
+    // BlocProvider(create: (context) => SignInCubit()),
     // BlocProvider(create: (context) => ViewProfileCubit()),
   ],child: MyApp()));
 }
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => UserProfilePage(),
         '/forum': (context) => ForumPage(),
         '/watch-list': (context) => WatchListPage(),
+        '/update-profile': (context) => UpdateUserProfilePage(),
   },
     );
   }

@@ -1,16 +1,16 @@
 
 import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
-import 'package:drc_cryptown/widgets/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:drc_cryptown/widgets/profile/update-profile.dart';
 
-class UserProfilePage extends StatefulWidget {
-  const UserProfilePage({Key? key}) : super(key: key);
+class UpdateUserProfilePage extends StatefulWidget {
+  const UpdateUserProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<UserProfilePage> createState() => _UserProfilePageState();
+  State<UpdateUserProfilePage> createState() => _UpdateUserProfilePageState();
 }
 
-class _UserProfilePageState extends State<UserProfilePage> {
+class _UpdateUserProfilePageState extends State<UpdateUserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       centerTitle: true,
       title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
     ),
-    body: Profile()
+    body: UpdateProfile()
     );
   }
 }

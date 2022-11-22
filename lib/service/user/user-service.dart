@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:drc_cryptown/models/user/profile/view-profile.dart';
+import 'dart:core';
 import 'package:http/http.dart';
 
 class UserService {
@@ -16,19 +15,21 @@ class UserService {
       );
       Response response = await post(
         registerUrl,
-        body: data,
+        body: jsonEncode(data),
         headers: <String, String>{
          'Content-Type': 'application/json',
         },
       );
       switch (response.statusCode) {
         case 200:
-          return response.body;
+          final data = jsonDecode(response.body);
+          return data;
         default:
           throw Exception(response.reasonPhrase);
       }
-    } on SocketException catch (_) {
-      rethrow;
+    } on Exception catch (error) {
+      // rethrow;
+      throw Exception(error);
     }
   }
 
@@ -64,7 +65,7 @@ class UserService {
 
   Future<dynamic> getUserProfileData(String accessToken) async {
     try {
-      final Uri profileUrl = Uri(
+      final Uri viewProfileUrl = Uri(
         scheme: 'http',
         // host: 'api.cryptown-besquare.one',
         host: '192.168.18.79',
@@ -72,7 +73,7 @@ class UserService {
         path: '/api/user/profile',
       );
       Response response = await get(
-        profileUrl,
+        viewProfileUrl,
         headers: {
           'Authorization': 'Bearer $accessToken'
         },
@@ -81,32 +82,46 @@ class UserService {
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);
-          return ViewProfile.fromMap(data);
+          return data;
         default:
           throw Exception(response.reasonPhrase);
       }
-    } on SocketException catch (_) {
-      rethrow;
+    } on Exception catch (error){
+      throw Exception(error);
     }
   }
-//
-// Future<dynamic> updateUserProfile({
-//   required String accessToken,
-//   required Map<String, dynamic> data,
-// }) async {
-//   try {
-//     Response response = await _dio.put(
-//       'https://api.cryptown-besquare.one/api/user/update',
-//       data: data,
-//       queryParameters: {'apikey': ApiSecret.apiKey},
-//       options: Options(
-//         headers: {'Authorization': 'Bearer $accessToken'},
-//       ),
-//     );
-//     return response.data;
-//   } on DioError catch (e) {
-//     return e.response!.data;
-//   }
-// }
 
+  Future<dynamic> updateUserProfile({
+    required String accessToken,
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      final Uri updateProfileUrl = Uri(
+        scheme: 'http',
+        // host: 'api.cryptown-besquare.one',
+        host: '192.168.18.79',
+        port: 5000,
+        path: '/api/user/update',
+      );
+      Response response = await patch(
+        updateProfileUrl,
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(data),
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          final data = json.decode(response.body);
+          return data;
+        default:
+          throw Exception(response.reasonPhrase);
+      }
+    } on Exception catch (error) {
+      // rethrow;
+      throw Exception(error);
+    }
+  }
 }

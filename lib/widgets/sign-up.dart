@@ -1,6 +1,7 @@
 import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -19,14 +20,13 @@ class _SignUpState extends State<SignUp> {
   final UserService _apiClient = UserService();
 
   bool _isHidden1 = true;
-
   void _togglePassword() {
     setState(() {
       _isHidden1 = !_isHidden1;
     });
   }
-  bool _isHidden2 = true;
 
+  bool _isHidden2 = true;
   void _toggleConfirmPassword() {
     setState(() {
       _isHidden2 = !_isHidden2;
@@ -47,18 +47,20 @@ class _SignUpState extends State<SignUp> {
         "username": usernameController.text,
         "password": passwordController.text,
         "confirm_password": confirmPasswordController.text,
-
       };
 
       dynamic res = await _apiClient.registerUser(userData);
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      String accessToken = res["userJwt"];
 
-      if (res['ErrorCode'] == null) {
+      if (accessToken != null) {
+        SharedPreferences _prefs = await SharedPreferences.getInstance();
+        _prefs.setString('userJwt', accessToken);
         Navigator.of(context).pushNamed('/crypto-list');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['Message']}'),
+          content: Text('Error: ${res['mssg']}'),
           backgroundColor: Colors.red.shade300,
         ));
       }

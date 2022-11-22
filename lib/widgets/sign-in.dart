@@ -2,6 +2,7 @@
 import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class signIn extends StatefulWidget {
@@ -25,6 +26,14 @@ class _signInState extends State<signIn> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool _isHidden1 = true;
+
+  void _togglePassword() {
+    setState(() {
+      _isHidden1 = !_isHidden1;
+    });
+  }
+
   //get the api service
   final UserService _apiClient = UserService();
 
@@ -36,22 +45,23 @@ class _signInState extends State<signIn> {
       ));
 
       Map<String, dynamic> userData = {
-        "email":_emailController.text,
+        "email": _emailController.text,
         "password": _passwordController.text,
       };
 
       dynamic res = await _apiClient.login(userData);
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      String accessToken = res["userJwt"];
 
-      if (accessToken != null) {
+      if (res['userJwt'] != null) {
         // sharedPreferences.setString("userJWT",  res['userJWT']);
-        // String accessToken = res['userJWT'];
+        String accessToken = res["userJwt"];
+        SharedPreferences _prefs = await SharedPreferences.getInstance();
+        _prefs.setString('userJwt', accessToken);
         Navigator.of(context).pushNamed('/crypto-list');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Login Failed'),
+          content: Text('Error: ${res['mssg']}'),
           backgroundColor: Colors.red.shade300,
         ));
       }
@@ -96,16 +106,21 @@ class _signInState extends State<signIn> {
                     validator: MultiValidator([
                       RequiredValidator(errorText: "* Required"),
                       MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
-                      PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'Need at least 1 special character'),
-                      PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
-                      PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
-                      PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
                     ]),
                     controller: _passwordController,
+                    obscureText: _isHidden1,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter your password',
+                      suffix: InkWell(
+                        onTap: _togglePassword,
+                        child: Icon(
+                          _isHidden1
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
                     ),
                   ),
                 ),
