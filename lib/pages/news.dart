@@ -20,6 +20,7 @@ class _NewsPageState extends State<NewsPage> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
         centerTitle: true,
         title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
       ),

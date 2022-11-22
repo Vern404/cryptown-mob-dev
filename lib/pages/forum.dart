@@ -17,7 +17,8 @@ class _ForumPageState extends State<ForumPage> {
         drawer: NavBar(),
         appBar: AppBar(
         centerTitle: true,
-        title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
+          backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
+          title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
         ),
         body: Column(
           children: [
