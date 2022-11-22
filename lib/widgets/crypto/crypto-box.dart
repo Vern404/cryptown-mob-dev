@@ -21,20 +21,39 @@ class CryptoCard extends StatelessWidget {
                   Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
                 },
                 child: Row(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:[
-                    Text('${cryptoListModel.cryptoList[index].marketCapRank}'),
-                    Image.network(
-                      '${cryptoListModel.cryptoList[index].image}',
-                      height: 30,
-                      width: 30,),
-                    Text('${cryptoListModel.cryptoList[index].name}'),
-                    Text('${cryptoListModel.cryptoList[index].symbol}'),
-                    Text('${cryptoListModel.cryptoList[index].currentPrice}'),
-                    IconButton(onPressed: (){
-                      // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
-                    }, icon: Icon(Icons.star_border_outlined)),
+                    Row(
+                      children: [
+                        Text('${cryptoListModel.cryptoList[index].marketCapRank}'),
+                        const SizedBox(width: 15),
+                        Image.network(
+                          '${cryptoListModel.cryptoList[index].image}',
+                          height: 20,
+                          width: 20,),
+                        const SizedBox(width: 5),
+                        Text('${cryptoListModel.cryptoList[index].name}'),
+                        const SizedBox(width: 5),
+                        Text(
+                          '${cryptoListModel.cryptoList[index].symbol.toUpperCase()}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ) ,),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        Text('${cryptoListModel.cryptoList[index].currentPrice}'),
+                        const SizedBox(width: 5),
+                        IconButton(onPressed: (){
+                          // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
+                        }, icon: Icon(Icons.star_border_outlined)),
+                      ],
+                    ),
+
                   ]
 
                 ),

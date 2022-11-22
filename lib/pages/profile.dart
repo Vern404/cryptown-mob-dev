@@ -18,6 +18,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
         drawer: NavBar(),
     appBar: AppBar(
       centerTitle: true,
+      backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
       title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
     ),
     body: Profile()
