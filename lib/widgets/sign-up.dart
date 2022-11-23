@@ -73,7 +73,7 @@ class _SignUpState extends State<SignUp> {
         body:SingleChildScrollView(
         physics: BouncingScrollPhysics(),
           child:Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -83,16 +83,7 @@ class _SignUpState extends State<SignUp> {
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width,
               height: 100,),
-            const SizedBox(height: 20),
-            Text('Cleans A Big, Big Cryptocurrency For Less Than Half A Crown.',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w200,
-            )
-            ),),
-            const SizedBox(height: 25),
+            const SizedBox(height: 50),
             Text('SIGN UP',
               style: GoogleFonts.poppins(
               textStyle: TextStyle(
@@ -195,14 +186,47 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           const SizedBox(height: 20),
-                          Text('By signing up, you’re agree to our Terms & Conditions and our Privacy Policy',
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                )
-                            ),),
+                          Column(
+                            children: [
+                              Text('By signing up, you’re agree to our',
+                                textAlign: TextAlign.left,
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    )
+                                ),),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Terms & Conditions ',
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        )
+                                    ),),
+                                  Text('and ',
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w300,
+                                        )
+                                    ),),
+                                  Text('Privacy Policy',
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        )
+                                    ),),
+                                ],
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 10),
                           ElevatedButton(
                               onPressed: Register,
