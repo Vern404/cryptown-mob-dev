@@ -73,7 +73,7 @@ class _signInState extends State<signIn> {
         body:SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child:Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
