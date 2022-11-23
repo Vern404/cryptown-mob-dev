@@ -1,11 +1,9 @@
+import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
-import 'package:drc_cryptown/widgets/crypto/crypto-box.dart';
 import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import '../models/Crypto/cryto-model.dart';
 
 class CryptoPage extends StatefulWidget {
   const CryptoPage({Key? key}) : super(key: key);
@@ -15,10 +13,8 @@ class CryptoPage extends StatefulWidget {
 }
 
 class _CryptoPageState extends State<CryptoPage> {
-  // List<String> searchResult = [];
-  // List<CryptoList> cryptoList = [];
   late TextEditingController controller;
-
+  List<CryptoList> cryptoList =[];
   @override
   void initState() {
     super.initState();
@@ -43,9 +39,8 @@ class _CryptoPageState extends State<CryptoPage> {
           children: [
             const SizedBox(height: 20),
             TextField(
-              onChanged: (_){
-                setState(() {
-                });
+              onChanged: (_) {
+                setState(() {});
               },
               controller: controller,
               decoration: InputDecoration(
@@ -59,7 +54,7 @@ class _CryptoPageState extends State<CryptoPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
             Container(
               child: Text(
                 'Crypto List',
@@ -119,7 +114,7 @@ class _CryptoPageState extends State<CryptoPage> {
                     return Center(child: const CircularProgressIndicator());
                   }
                   if (state is CryptoLoaded) {
-                    return CryptoCard(cryptoListModel: state.cryptoListModel);
+                    // return CryptoCard(cryptoListModel: state.cryptoListModel);
                     // if (searchResult.length != 0 || controller.text.isNotEmpty) {
                     //   return CryptoCard(cryptoListModel: state.cryptoListModel);
                     // } else {
@@ -137,23 +132,69 @@ class _CryptoPageState extends State<CryptoPage> {
                     //   );
                     // }
 
-                    // List<CryptoList> toRender = controller.text.isNotEmpty
-                    //     ? List.from(
-                    //     state.cryptoListModel.cryptoList.expand((data) {
-                    //       if (data.name.contains(controller.text)) {
-                    //         return [data];
-                    //       }
-                    //       return <CryptoList>[];
-                    //     }))
-                    //     : (state.cryptoListModel.cryptoList);
-                    //
-                    // return ListView.builder(
-                    //     itemCount: toRender.length,
-                    //     itemBuilder: ((context, index) {
-                    //       return CryptoCard(cryptoListModel:toRender[index]);
-                    //     }));
+                    List<CryptoList> cryptoList = controller.text.isNotEmpty
+                        ? List.from(
+                        state.cryptoListModel.cryptoList.expand((data) {
+                          if (data.cryptoId.contains(controller.text)) {
+                            return [data];
+                          }
+                          return <CryptoList>[];
+                        }))
+                        : (state.cryptoListModel.cryptoList);
+                    
+                    return ListView.builder(
+                      itemCount: cryptoList.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          color: Color.fromRGBO(202, 225, 252, 1.0),
+                          child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child:InkWell(
+                                onTap: (){
+                                  Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoList[index].cryptoId);
+                                },
+                                child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children:[
+                                      Row(
+                                        children: [
+                                          Text('${cryptoList[index].marketCapRank}'),
+                                          const SizedBox(width: 15),
+                                          Image.network(
+                                            '${cryptoList[index].image}',
+                                            height: 20,
+                                            width: 20,),
+                                          const SizedBox(width: 5),
+                                          Text('${cryptoList[index].name}'),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            '${cryptoList[index].symbol.toUpperCase()}',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ) ,),
+                                        ],
+                                      ),
 
+                                      Row(
+                                        children: [
+                                          Text('${cryptoList[index].currentPrice}'),
+                                          const SizedBox(width: 5),
+                                          IconButton(onPressed: (){
+                                            // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
+                                          }, icon: Icon(Icons.star_border_outlined)),
+                                        ],
+                                      ),
+
+                                    ]
+
+                                ),
+                              )
+                          ),
+                        );
                   }
+                );}
                   return Text(state is CryptoError
                       ? state.errorMsg
                       : 'Unknown Error');
