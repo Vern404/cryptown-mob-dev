@@ -27,7 +27,7 @@ class Exchange {
   });
 
   final String name;
-  final String yearEstablished;
+  final String? yearEstablished;
   final String? country;
   final int trustScoreRank;
   final int trustScore;
@@ -40,7 +40,7 @@ class Exchange {
   factory Exchange.fromMap(Map<String, dynamic> json) => Exchange(
     name: json["name"],
     yearEstablished: json["year_established"].toString(),
-    country: json["country"] ?? 'null',
+    country: json["country"] ?? 'NOT FOUND 404',
     trustScoreRank: json["trust_score_rank"],
     trustScore: json["trust_score"],
     tradeVolume24HBtc: json["trade_volume_24h_btc"].toDouble(),
