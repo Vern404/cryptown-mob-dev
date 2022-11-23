@@ -9,9 +9,8 @@ class CryptoService {
       host: 'api.cryptown-besquare.one',
       path: '/api/crypto/cryptoList',
     );
-    print(cryptoUrl);
-    http.Response response = await http.get(cryptoUrl);
 
+    http.Response response = await http.get(cryptoUrl);
 
     if (response.statusCode == 200) {
       return CryptoListModel.fromJson(response.body);

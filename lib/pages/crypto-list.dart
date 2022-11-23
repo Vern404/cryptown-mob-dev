@@ -60,7 +60,7 @@ class _CryptoPageState extends State<CryptoPage> {
                 'Crypto List',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 35,
                 ),
               ),
             ),
@@ -114,24 +114,6 @@ class _CryptoPageState extends State<CryptoPage> {
                     return Center(child: const CircularProgressIndicator());
                   }
                   if (state is CryptoLoaded) {
-                    // return CryptoCard(cryptoListModel: state.cryptoListModel);
-                    // if (searchResult.length != 0 || controller.text.isNotEmpty) {
-                    //   return CryptoCard(cryptoListModel: state.cryptoListModel);
-                    // } else {
-                    //   return new ListView.builder(
-                    //     itemCount: searchResult.length,
-                    //     itemBuilder: (context, i) {
-                    //       return new Card(
-                    //         child: Column(
-                    //         children: [
-                    //           Text(searchResult[i],)
-                    //         ],
-                    //         )
-                    //       );
-                    //     },
-                    //   );
-                    // }
-
                     List<CryptoList> cryptoList = controller.text.isNotEmpty
                         ? List.from(
                         state.cryptoListModel.cryptoList.expand((data) {
@@ -148,47 +130,47 @@ class _CryptoPageState extends State<CryptoPage> {
                         return Card(
                           color: Color.fromRGBO(202, 225, 252, 1.0),
                           child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              child:InkWell(
-                                onTap: (){
-                                  Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoList[index].cryptoId);
-                                },
-                                child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children:[
-                                      Row(
-                                        children: [
-                                          Text('${cryptoList[index].marketCapRank}'),
-                                          const SizedBox(width: 15),
-                                          Image.network(
-                                            '${cryptoList[index].image}',
-                                            height: 20,
-                                            width: 20,),
-                                          const SizedBox(width: 5),
-                                          Text('${cryptoList[index].name}'),
-                                          const SizedBox(width: 5),
-                                          Text(
-                                            '${cryptoList[index].symbol.toUpperCase()}',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                            ) ,),
-                                        ],
-                                      ),
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child:InkWell(
+                              onTap: (){
+                                Navigator.of(context).pushNamed(
+                                    '/crypto-details',
+                                    arguments:cryptoList[index].cryptoId);
+                              },
+                              child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children:[
+                                    Row(
+                                      children: [
+                                        Text('${cryptoList[index].marketCapRank}'),
+                                        const SizedBox(width: 15),
+                                        Image.network(
+                                          '${cryptoList[index].image}',
+                                          height: 20,
+                                          width: 20,),
+                                        const SizedBox(width: 5),
+                                        Text('${cryptoList[index].name}'),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          '${cryptoList[index].symbol.toUpperCase()}',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ) ,),
+                                      ],
+                                    ),
 
-                                      Row(
-                                        children: [
-                                          Text('${cryptoList[index].currentPrice}'),
-                                          const SizedBox(width: 5),
-                                          IconButton(onPressed: (){
-                                            // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
-                                          }, icon: Icon(Icons.star_border_outlined)),
-                                        ],
-                                      ),
-
-                                    ]
-
+                                    Row(
+                                      children: [
+                                        Text('${cryptoList[index].currentPrice}'),
+                                        const SizedBox(width: 5),
+                                        IconButton(onPressed: (){
+                                          // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
+                                        }, icon: Icon(Icons.star_border_outlined)),
+                                      ],
+                                    ),
+                                  ]
                                 ),
                               )
                           ),

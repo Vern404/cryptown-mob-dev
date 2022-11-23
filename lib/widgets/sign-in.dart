@@ -2,8 +2,8 @@
 import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
 class signIn extends StatefulWidget {
   const signIn({Key? key}) : super(key: key);
@@ -54,7 +54,6 @@ class _signInState extends State<signIn> {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
       if (res['userJwt'] != null) {
-        // sharedPreferences.setString("userJWT",  res['userJWT']);
         String accessToken = res["userJwt"];
         SharedPreferences _prefs = await SharedPreferences.getInstance();
         _prefs.setString('userJwt', accessToken);
@@ -73,77 +72,120 @@ class _signInState extends State<signIn> {
     return Scaffold(
         body:SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child:Column(
-        children: [
-        Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 300,),
-        Form(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            key: formkey,
-            child: Column(
-              children:<Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: "* Required"),
-                        EmailValidator(errorText: "Enter valid email format"),
-                      ]),
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email Address',
-                      hintText: 'example@example.com.my',
+        child:Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+          Image.asset('assets/image/logo.png',fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: 100,),
+          const SizedBox(height: 20),
+          Text('Cleans A Big, Big Cryptocurrency For Less Than Half A Crown.',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w200,
+              )
+            ),),
+          const SizedBox(height: 50),
+          Text('LOGIN',
+            style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                )
+            ),),
+            const SizedBox(height: 5),
+            Text('Always the best platform for learning crypto',
+              style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                  )
+              ),),
+            const SizedBox(height: 30),
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              key: formkey,
+              child: Column(
+                children:<Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                        validator: MultiValidator([
+                          RequiredValidator(errorText: "* Required"),
+                          EmailValidator(errorText: "Enter valid email format"),
+                        ]),
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Email Address',
+                        hintText: 'example@example.com.my',
 
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    validator: MultiValidator([
-                      RequiredValidator(errorText: "* Required"),
-                      MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
-                    ]),
-                    controller: _passwordController,
-                    obscureText: _isHidden1,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
-                      suffix: InkWell(
-                        onTap: _togglePassword,
-                        child: Icon(
-                          _isHidden1
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: "* Required"),
+                        MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
+                      ]),
+                      controller: _passwordController,
+                      obscureText: _isHidden1,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        hintText: 'Enter your password',
+                        suffix: InkWell(
+                          onTap: _togglePassword,
+                          child: Icon(
+                            _isHidden1
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: login,
-                        child: Text('Login')),
-                    TextButton(
-                        onPressed: (){
-                          Navigator.of(context).pushNamed('/sign-up');
-                          print("Success enter sign up page");
-                        },
-                        child: Text('Sign Up'))
-                  ],
-                ),
+                  const SizedBox(height: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: login,
+                          child: Text('Login')),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('New to Cryptown? '),
+                          TextButton(
+                              onPressed: (){
+                                Navigator.of(context).pushNamed('/sign-up');
+                                print("Success enter sign up page");
+                              },
+                              child: Text('Sign Up')),
+                          Text('Now'),
+                        ],
+                      )
+                    ],
+                  ),
 
-              ],
-        ),
+                ],
+          ),
 
     )
-        ])
+          ]),
+        )
     )
     );
   }

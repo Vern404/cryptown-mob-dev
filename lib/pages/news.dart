@@ -26,6 +26,16 @@ class _NewsPageState extends State<NewsPage> {
       ),
       body: Column(
         children: [
+          const SizedBox(height: 30),
+          Container(
+            child: Text(
+              'News',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 35,
+              ),
+            ),
+          ),
           Expanded(
             child: BlocBuilder<NewsCubit, NewsState>(
               bloc: cubit,

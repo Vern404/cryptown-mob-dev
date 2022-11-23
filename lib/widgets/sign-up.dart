@@ -1,6 +1,7 @@
 import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
@@ -71,9 +72,43 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
         body:SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child:Column(
-          children: [
-            Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 250,),
+          child:Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            const SizedBox(height: 50),
+            Image.asset('assets/image/logo.png',
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+              height: 100,),
+            const SizedBox(height: 20),
+            Text('Cleans A Big, Big Cryptocurrency For Less Than Half A Crown.',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+            )
+            ),),
+            const SizedBox(height: 25),
+            Text('SIGN UP',
+              style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              )
+            ),),
+            const SizedBox(height: 5),
+            Text('Always the best platform for learning crypto',
+              style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.normal,
+              )
+            ),),
+            const SizedBox(height: 15),
             Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               key: formkey,
@@ -159,15 +194,34 @@ class _SignUpState extends State<SignUp> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          const SizedBox(height: 20),
+                          Text('By signing up, you’re agree to our Terms & Conditions and our Privacy Policy',
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                )
+                            ),),
+                          const SizedBox(height: 10),
                           ElevatedButton(
                               onPressed: Register,
                               child: Text('Sign Up')),
-                          TextButton(
-                              onPressed: (){
-                                Navigator.of(context).pushNamed('/sign-in');
-                                print("Return to sign in page");
-                              },
-                              child: Text('Login')),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Already user?'),
+                              TextButton(
+                                  onPressed: (){
+                                    Navigator.of(context).pushNamed('/sign-in');
+                                    print("Return to sign in page");
+                                  },
+                                  child: Text('Login')),
+                              Text('here'),
+                            ],
+                          ),
+
                         ],
                       ),
 
@@ -177,6 +231,6 @@ class _SignUpState extends State<SignUp> {
     ])
     )
 
-    );
+    ));
   }
 }
