@@ -1,6 +1,8 @@
 
 import 'package:drc_cryptown/models/News/news-model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({required this.newsListModel, Key? key}) : super(key: key);
@@ -13,15 +15,13 @@ class NewsCard extends StatelessWidget {
           itemCount: newsListModel.news.length,
           itemBuilder: (context, index) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(vertical: 8.0,horizontal: 15.0 ),
               child: InkWell(
-                onTap: () async{
-                  // var url = '${newsListModel.news[index].url}';
-                  // if(await canLaunchUrlString(url)){
-                  //   await launchUrlString(url);
-                  // } else {
-                  // throw 'Could not launch $url';
-                  // }
+                onTap: () async {
+                  Uri _url = Uri.parse('${newsListModel.news[index].url}');
+                  if (!await launchUrl(_url)) {
+                    throw 'Could not launch $_url';
+                  }
                 },
                 child: Card(
                   color: Color.fromRGBO(240, 247, 255, 1),
@@ -32,11 +32,29 @@ class NewsCard extends StatelessWidget {
                         children: [
                           Image.network(
                             '${newsListModel.news[index].image}',
-                            width: 130,
+                            width: MediaQuery.of(context).size.width,
                             height: 130,
+                            fit: BoxFit.cover,
                           ),
-                          Text('${newsListModel.news[index].name}'),
-                          Text('${newsListModel.news[index].description}'),
+                          const SizedBox(height: 30),
+                          Text('${newsListModel.news[index].name}',
+                              textAlign: TextAlign.left,
+                          style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ))
+                          ),
+                          const SizedBox(height: 10),
+                          Text('${newsListModel.news[index].description}',
+                            textAlign: TextAlign.justify,
+                            style: GoogleFonts.roboto(
+                                textStyle: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                ))
+                          ),
+                          const SizedBox(height: 20),
                           Text('${newsListModel.news[index].datePublished}'),
                         ],
                     ),
