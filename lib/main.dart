@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:drc_cryptown/pages/exchange-list.dart';
 import 'package:drc_cryptown/pages/forum.dart';
 import 'package:drc_cryptown/pages/news.dart';
@@ -56,6 +58,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color.fromRGBO(146, 203, 248, 1.0),
         scaffoldBackgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(color: Colors.white60),
+          hintStyle: TextStyle(color: Colors.white60),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Color.fromRGBO(
+                0, 66, 137, 1.0)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Color.fromRGBO(152, 203, 255, 1.0)),
+          ),
+        ),
+        textTheme: TextTheme(
+          bodyText2:  const TextStyle(color: Colors.white),
+          button:  const TextStyle(color: Colors.white),
+          subtitle1: const TextStyle(color: Colors.white),
+        ),
       ),
       home: const SignInPage(),
       routes: {

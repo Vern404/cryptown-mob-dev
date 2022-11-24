@@ -16,7 +16,7 @@ class NavBar extends StatelessWidget {
                 color: Color.fromRGBO(240, 247, 255, 100),
                 image: DecorationImage(
                   image: AssetImage('assets/image/logo.png'),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitWidth,
                 )
               ),
               child: Text(

@@ -21,6 +21,14 @@ class _CryptoPageState extends State<CryptoPage> {
     controller = TextEditingController();
   }
 
+  bool _isFavourite = false;
+
+  void _toggleStar() {
+    setState(() {
+      _isFavourite = !_isFavourite;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     CryptoCubit cubit = BlocProvider.of<CryptoCubit>(context)
@@ -31,7 +39,7 @@ class _CryptoPageState extends State<CryptoPage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
         centerTitle: true,
-        title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
+        title:Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,width: 150,),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -165,9 +173,21 @@ class _CryptoPageState extends State<CryptoPage> {
                                       children: [
                                         Text('${cryptoList[index].currentPrice}'),
                                         const SizedBox(width: 5),
-                                        IconButton(onPressed: (){
-                                          // Navigator.of(context).pushNamed('/crypto-details', arguments:cryptoListModel.cryptoList[index].cryptoId);
-                                        }, icon: Icon(Icons.star_border_outlined)),
+                                        IconButton(
+                                            onPressed: _toggleStar,
+                                            // icon: Icon(Icons.star_border_outlined)),
+                                            // onPressed:(){
+                                            //   setState(() {
+                                            //     // if (alreadySaved){
+                                            //
+                                            //     // }
+                                            //   });
+                                            // },
+                                          icon: Icon(
+                                            _isFavourite ? Icons.star : Icons.star_border,
+                                            color: _isFavourite ? Colors.blue : Colors.blue,
+                                          ),
+                                          ),
                                       ],
                                     ),
                                   ]

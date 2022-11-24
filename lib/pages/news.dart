@@ -22,7 +22,7 @@ class _NewsPageState extends State<NewsPage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
         centerTitle: true,
-        title:Image.asset('assets/image/logo.png',fit: BoxFit.cover,height: 180,),
+        title:Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,width: 150,),
       ),
       body: Column(
         children: [
