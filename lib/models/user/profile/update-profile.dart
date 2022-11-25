@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 
-class UpdateProfile {
-  UpdateProfile({
+class UpdateProfileModel {
+  UpdateProfileModel({
     required this.email,
     required this.username,
   });
@@ -10,9 +10,9 @@ class UpdateProfile {
   final String email;
   final String username;
 
-  factory UpdateProfile.fromJson(String str) => UpdateProfile.fromMap(json.decode(str));
+  factory UpdateProfileModel.fromJson(String str) => UpdateProfileModel.fromMap(json.decode(str));
 
-  factory UpdateProfile.fromMap(Map<String, dynamic> json) => UpdateProfile(
+  factory UpdateProfileModel.fromMap(Map<String, dynamic> json) => UpdateProfileModel(
     email: json["email"],
     username: json["username"],
   );

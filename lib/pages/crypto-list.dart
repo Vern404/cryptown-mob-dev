@@ -1,9 +1,13 @@
 import 'package:drc_cryptown/models/Crypto/cryto-model.dart';
+import 'package:drc_cryptown/models/watchlist/watchlist-model.dart';
+import 'package:drc_cryptown/service/watchlist-service.dart';
 import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/crypto/crypto-state.dart';
 import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CryptoPage extends StatefulWidget {
   const CryptoPage({Key? key}) : super(key: key);
@@ -15,18 +19,14 @@ class CryptoPage extends StatefulWidget {
 class _CryptoPageState extends State<CryptoPage> {
   late TextEditingController controller;
   List<CryptoList> cryptoList =[];
+  List<Favourite> favourite = [];
+
+  final WatchlistService watchlistService = WatchlistService();
+
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
-  }
-
-  bool _isFavourite = false;
-
-  void _toggleStar() {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
   }
 
   @override
@@ -173,21 +173,42 @@ class _CryptoPageState extends State<CryptoPage> {
                                       children: [
                                         Text('${cryptoList[index].currentPrice}'),
                                         const SizedBox(width: 5),
-                                        IconButton(
-                                            onPressed: _toggleStar,
-                                            // icon: Icon(Icons.star_border_outlined)),
-                                            // onPressed:(){
-                                            //   setState(() {
-                                            //     // if (alreadySaved){
-                                            //
-                                            //     // }
-                                            //   });
-                                            // },
-                                          icon: Icon(
-                                            _isFavourite ? Icons.star : Icons.star_border,
-                                            color: _isFavourite ? Colors.blue : Colors.blue,
-                                          ),
-                                          ),
+                                        StarButton(
+                                          isStarred: false,
+                                          iconDisabledColor: Colors.white,
+                                          valueChanged: (_isStarred) async {
+                                            print('Is Starred : $_isStarred');
+
+                                            SharedPreferences _prefs = await SharedPreferences.getInstance();
+                                            String accesstoken = _prefs.getString("userJwt")!;
+
+                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                              content: const Text('Adding coin into WatchList'),
+                                              backgroundColor: Colors.green.shade300,
+                                            ));
+
+                                            Map<String, dynamic> coinData = {
+                                              'cryptoId' : cryptoList[index].cryptoId,
+                                              'coinName' : cryptoList[index].name,
+                                              'image_url': cryptoList[index].image,
+                                            };
+
+                                            dynamic res = await watchlistService.updateWatchListCoin(accessToken: accesstoken, data: coinData);
+                                            if (res['newFavourite'] != null) {
+                                              print(res);
+                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                content: const Text('Added into Watchlist'),
+                                                backgroundColor: Colors.green.shade300,
+                                              ));
+                                              Navigator.of(context).pushNamed('/crypto-list');
+                                            } else {
+                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                content: Text('Error: ${res['mssg']}'),
+                                                backgroundColor: Colors.red.shade300,
+                                              ));
+                                            }
+                                            },
+                                        )
                                       ],
                                     ),
                                   ]

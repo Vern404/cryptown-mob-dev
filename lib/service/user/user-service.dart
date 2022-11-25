@@ -7,8 +7,9 @@ class UserService {
   Future<dynamic> registerUser(Map<String, dynamic>? data) async {
     try {
       final Uri registerUrl = Uri(
-        scheme: 'http',
+        // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
+        scheme: 'http',
         host: '192.168.18.79',
         port: 5000,
         path: '/api/user/signup',
@@ -36,8 +37,9 @@ class UserService {
   Future<dynamic> login(Map<String, dynamic>? data) async {
     try {
       final Uri loginUrl = Uri(
-        scheme: 'http',
+        // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
+        scheme: 'http',
         host: '192.168.18.79',
         port: 5000,
         path: '/api/user/login',
@@ -49,7 +51,7 @@ class UserService {
           'Content-Type': 'application/json',
         },
       );
-      print(response.body);
+      
       switch (response.statusCode) {
         case 200:
           final data = jsonDecode(response.body);
@@ -66,8 +68,9 @@ class UserService {
   Future<dynamic> getUserProfileData(String accessToken) async {
     try {
       final Uri viewProfileUrl = Uri(
-        scheme: 'http',
+        // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
+        scheme: 'http',
         host: '192.168.18.79',
         port: 5000,
         path: '/api/user/profile',
@@ -97,10 +100,11 @@ class UserService {
   }) async {
     try {
       final Uri updateProfileUrl = Uri(
-        scheme: 'http',
+        // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
-        host: '192.168.18.79',
-        port: 5000,
+        scheme: 'http',
+        // host: '192.168.18.79',
+        // port: 5000,
         path: '/api/user/update',
       );
       Response response = await patch(
@@ -121,6 +125,35 @@ class UserService {
       }
     } on Exception catch (error) {
       // rethrow;
+      throw Exception(error);
+    }
+  }
+
+  Future<Response> logout(String accessToken) async {
+    try {
+      final Uri logoutUrl = Uri(
+        // scheme: 'https',
+        // host: 'api.cryptown-besquare.one',
+        scheme: 'http',
+        host: '192.168.18.79',
+        port: 5000,
+        path: '/api/user/logout',
+      );
+      Response response = await delete(
+        logoutUrl,
+        headers: {
+          'Authorization': 'Bearer $accessToken'
+        },
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          final data = json.decode(response.body);
+          return data;
+        default:
+          throw Exception(response.reasonPhrase);
+      }
+    } on Exception catch (error){
       throw Exception(error);
     }
   }
