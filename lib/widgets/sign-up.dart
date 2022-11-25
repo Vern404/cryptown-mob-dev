@@ -69,192 +69,203 @@ class _SignUpState extends State<SignUp> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body:SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-          child:Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            const SizedBox(height: 50),
-            Image.asset('assets/image/logo.png',
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-              height: 100,),
-            const SizedBox(height: 50),
-            Text('SIGN UP',
-              style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              )
-            ),),
-            const SizedBox(height: 5),
-            Text('Always the best platform for learning crypto',
-              style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-              )
-            ),),
-            const SizedBox(height: 15),
-            Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: formkey,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: usernameController,
-                          validator: MultiValidator([
-                            RequiredValidator(errorText: "* Required"),
-                            PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
-                          ]),
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Userame',
-                            hintText: 'john123',
+    return Container(
+      decoration: new BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xff242424),
+            const Color(0xff3b0054),
+            const Color(0xff00094b),
+            const Color(0xff242424),
+          ],),),
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body:SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+            child:Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              const SizedBox(height: 50),
+              Image.asset('assets/image/logo.png',
+                fit: BoxFit.fitWidth,
+                width: MediaQuery.of(context).size.width,
+                height: 100,),
+              const SizedBox(height: 50),
+              Text('SIGN UP',
+                style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                )
+              ),),
+              const SizedBox(height: 5),
+              Text('Always the best platform for learning crypto',
+                style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                )
+              ),),
+              const SizedBox(height: 15),
+              Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                key: formkey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: usernameController,
+                            validator: MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
+                            ]),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Userame',
+                              hintText: 'john123',
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: emailController,
-                          validator: MultiValidator([
-                            RequiredValidator(errorText: "* Required"),
-                            EmailValidator(errorText: "Enter valid email format"),
-                          ]),
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email Address',
-                            hintText: 'example@example.com.my',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: emailController,
+                            validator: MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              EmailValidator(errorText: "Enter valid email format"),
+                            ]),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Email Address',
+                              hintText: 'example@example.com.my',
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: passwordController,
-                          validator: MultiValidator([
-                            RequiredValidator(errorText: "* Required"),
-                            MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
-                            PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'Need at least 1 special character'),
-                            PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
-                            PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
-                            PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
-                          ]),
-                          obscureText: _isHidden1,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password',
-                            hintText: 'Enter your password',
-                            suffix: InkWell(
-                              onTap: _togglePassword,
-                              child: Icon(
-                                _isHidden1
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: passwordController,
+                            validator: MultiValidator([
+                              RequiredValidator(errorText: "* Required"),
+                              MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
+                              PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'Need at least 1 special character'),
+                              PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
+                              PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
+                              PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
+                            ]),
+                            obscureText: _isHidden1,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Password',
+                              hintText: 'Enter your password',
+                              suffix: InkWell(
+                                onTap: _togglePassword,
+                                child: Icon(
+                                  _isHidden1
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                              ),),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: confirmPasswordController,
+                            validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, passwordController.text ),
+                            obscureText: _isHidden2,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Confirm Password',
+                              hintText: 'Re-enter Password again',
+                              suffix: InkWell(
+                                onTap: _toggleConfirmPassword,
+                                child: Icon(
+                                  _isHidden2
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
                             ),),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: confirmPasswordController,
-                          validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, passwordController.text ),
-                          obscureText: _isHidden2,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Confirm Password',
-                            hintText: 'Re-enter Password again',
-                            suffix: InkWell(
-                              onTap: _toggleConfirmPassword,
-                              child: Icon(
-                                _isHidden2
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                          ),),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const SizedBox(height: 20),
-                          Column(
-                            children: [
-                              Text('By signing up, you’re agree to our',
-                                textAlign: TextAlign.left,
-                                style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w300,
-                                    )
-                                ),),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Terms & Conditions ',
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        )
-                                    ),),
-                                  Text('and ',
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w300,
-                                        )
-                                    ),),
-                                  Text('Privacy Policy',
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        )
-                                    ),),
-                                ],
-                              ),
-                            ],
                           ),
-                          const SizedBox(height: 10),
-                          ElevatedButton(
-                              onPressed: Register,
-                              child: Text('Sign Up')),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Already user?'),
-                              TextButton(
-                                  onPressed: (){
-                                    Navigator.of(context).pushNamed('/sign-in');
-                                    print("Return to sign in page");
-                                  },
-                                  child: Text('Login')),
-                              Text('here'),
-                            ],
-                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const SizedBox(height: 20),
+                            Column(
+                              children: [
+                                Text('By signing up, you’re agree to our',
+                                  textAlign: TextAlign.left,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                      )
+                                  ),),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Terms & Conditions ',
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          )
+                                      ),),
+                                    Text('and ',
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300,
+                                          )
+                                      ),),
+                                    Text('Privacy Policy',
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          )
+                                      ),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            ElevatedButton(
+                                onPressed: Register,
+                                child: Text('Sign Up')),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Already user?'),
+                                TextButton(
+                                    onPressed: (){
+                                      Navigator.of(context).pushNamed('/sign-in');
+                                      print("Return to sign in page");
+                                    },
+                                    child: Text('Login')),
+                                Text('here'),
+                              ],
+                            ),
 
-                        ],
-                      ),
+                          ],
+                        ),
 
-                    ],
-                  ),
-            ),
-    ])
-    )
+                      ],
+                    ),
+              ),
+      ])
+      )
 
-    ));
+      )),
+    );
   }
 }

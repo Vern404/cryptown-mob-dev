@@ -69,124 +69,137 @@ class _signInState extends State<signIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body:SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child:Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 100),
-          Image.asset('assets/image/logo.png',fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width,
-            height: 100,),
-          const SizedBox(height: 20),
-          Text('Cleans A Big, Big Cryptocurrency For Less Than Half A Crown.',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w200,
-              )
-            ),),
-          const SizedBox(height: 50),
-          Text('LOGIN',
-            style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+    var size = MediaQuery.of(context).size;
+    return Container(
+      decoration: new BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xff242424),
+            const Color(0xff3b0054),
+            const Color(0xff00094b),
+            const Color(0xff242424),
+          ],),),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+          body:SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child:Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 100),
+            Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,
+              width: size.width,
+              height: 100,),
+            const SizedBox(height: 20),
+            Text('Cleans A Big, Big Cryptocurrency For Less Than Half A Crown.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w200,
                 )
-            ),),
-            const SizedBox(height: 5),
-            Text('Always the best platform for learning crypto',
+              ),),
+            const SizedBox(height: 50),
+            Text('LOGIN',
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.normal,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
                   )
               ),),
-            const SizedBox(height: 30),
-            Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: formkey,
-              child: Column(
-                children:<Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        validator: MultiValidator([
-                          RequiredValidator(errorText: "* Required"),
-                          EmailValidator(errorText: "Enter valid email format"),
-                        ]),
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email Address',
-                        hintText: 'example@example.com.my',
+              const SizedBox(height: 5),
+              Text('Always the best platform for learning crypto',
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                    )
+                ),),
+              const SizedBox(height: 30),
+              Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                key: formkey,
+                child: Column(
+                  children:<Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: "* Required"),
+                            EmailValidator(errorText: "Enter valid email format"),
+                          ]),
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email Address',
+                          hintText: 'example@example.com.my',
 
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: "* Required"),
-                        MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
-                      ]),
-                      controller: _passwordController,
-                      obscureText: _isHidden1,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Password',
-                        hintText: 'Enter your password',
-                        suffix: InkWell(
-                          onTap: _togglePassword,
-                          child: Icon(
-                            _isHidden1
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        validator: MultiValidator([
+                          RequiredValidator(errorText: "* Required"),
+                          MinLengthValidator(8, errorText: "* Password should be at least 8 character"),
+                        ]),
+                        controller: _passwordController,
+                        obscureText: _isHidden1,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Password',
+                          hintText: 'Enter your password',
+                          suffix: InkWell(
+                            onTap: _togglePassword,
+                            child: Icon(
+                              _isHidden1
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: login,
-                          child: Text('Login')),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('New to Cryptown? '),
-                          TextButton(
-                              onPressed: (){
-                                Navigator.of(context).pushNamed('/sign-up');
-                                print("Success enter sign up page");
-                              },
-                              child: Text('Sign Up')),
-                          Text('Now'),
-                        ],
-                      )
-                    ],
-                  ),
+                    const SizedBox(height: 20),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: login,
+                            child: Text('Login')),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('New to Cryptown? '),
+                            TextButton(
+                                onPressed: (){
+                                  Navigator.of(context).pushNamed('/sign-up');
+                                  print("Success enter sign up page");
+                                },
+                                child: Text('Sign Up')),
+                            Text('Now'),
+                          ],
+                        )
+                      ],
+                    ),
 
-                ],
-          ),
+                  ],
+            ),
 
-    )
-          ]),
-        )
-    )
+      )
+            ]),
+          )
+      )
+      ),
     );
   }
 }
