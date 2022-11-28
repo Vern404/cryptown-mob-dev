@@ -12,6 +12,7 @@ class CryptoDetailsModel {
   factory CryptoDetailsModel.fromMap(Map<String, dynamic> json) => CryptoDetailsModel(
     cryptoDetails: CryptoDetails.fromMap(json["cryptoDetails"]),
   );
+
 }
 
 class CryptoDetails {
@@ -30,6 +31,8 @@ class CryptoDetails {
     required this.circulatingSupply,
     required this.ath,
     required this.atl,
+    required this.link,
+    required this.image,
     required this.exchange,
     required this.description,
   });
@@ -40,14 +43,16 @@ class CryptoDetails {
   final int marketCapRank;
   final double currentPriceUsd;
   final double currentPriceBtc;
-  final double currentPriceMyr;
+  final int currentPriceMyr;
   final int marketCapUsd;
   final int marketCapMyr;
-  final dynamic totalSupply;
-  final dynamic maxSupply;
-  final double circulatingSupply;
+  final int totalSupply;
+  final int maxSupply;
+  final int circulatingSupply;
   final Ath ath;
   final Ath atl;
+  final String link;
+  final String image;
   final List<Exchange> exchange;
   final String description;
 
@@ -60,18 +65,19 @@ class CryptoDetails {
     marketCapRank: json["market_cap_rank"],
     currentPriceUsd: json["current_price_usd"].toDouble(),
     currentPriceBtc: json["current_price_btc"].toDouble(),
-    currentPriceMyr: json["current_price_myr"].toDouble(),
+    currentPriceMyr: json["current_price_myr"],
     marketCapUsd: json["market_cap_usd"],
     marketCapMyr: json["market_cap_myr"],
-    totalSupply: json["total_supply"] ?? '0',
-    maxSupply: json["max_supply"] ?? '0',
-    circulatingSupply: json["circulating_supply"].toDouble(),
+    totalSupply: json["total_supply"],
+    maxSupply: json["max_supply"],
+    circulatingSupply: json["circulating_supply"],
     ath: Ath.fromMap(json["ath"]),
     atl: Ath.fromMap(json["atl"]),
+    link: json["link"],
+    image: json["image"],
     exchange: List<Exchange>.from(json["exchange"].map((x) => Exchange.fromMap(x))),
     description: json["description"],
   );
-
 }
 
 class Ath {

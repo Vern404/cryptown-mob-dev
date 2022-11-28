@@ -15,7 +15,7 @@ class ChartPage extends StatelessWidget {
     return Scaffold(
         drawer: NavBar(),
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
+          backgroundColor: Color.fromRGBO(38, 2, 105, 1.0),
           centerTitle: true,
           title:Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,width: 150,),
         ),

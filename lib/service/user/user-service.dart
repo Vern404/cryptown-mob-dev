@@ -10,7 +10,8 @@ class UserService {
         // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
         scheme: 'http',
-        host: '192.168.18.79',
+        // host: '192.168.18.79',
+        host: '192.168.100.52',
         port: 5000,
         path: '/api/user/signup',
       );
@@ -40,7 +41,8 @@ class UserService {
         // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
         scheme: 'http',
-        host: '192.168.18.79',
+        // host: '192.168.18.79',
+        host: '192.168.100.52',
         port: 5000,
         path: '/api/user/login',
       );
@@ -71,7 +73,8 @@ class UserService {
         // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
         scheme: 'http',
-        host: '192.168.18.79',
+        // host: '192.168.18.79',
+        host: '192.168.100.52',
         port: 5000,
         path: '/api/user/profile',
       );
@@ -104,7 +107,8 @@ class UserService {
         // host: 'api.cryptown-besquare.one',
         scheme: 'http',
         // host: '192.168.18.79',
-        // port: 5000,
+        host: '192.168.100.52',
+        port: 5000,
         path: '/api/user/update',
       );
       Response response = await patch(
@@ -135,7 +139,8 @@ class UserService {
         // scheme: 'https',
         // host: 'api.cryptown-besquare.one',
         scheme: 'http',
-        host: '192.168.18.79',
+        // host: '192.168.18.79',
+        host: '192.168.100.52',
         port: 5000,
         path: '/api/user/logout',
       );
@@ -145,7 +150,7 @@ class UserService {
           'Authorization': 'Bearer $accessToken'
         },
       );
-
+      print(response.body);
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);

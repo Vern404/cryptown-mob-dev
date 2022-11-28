@@ -7,55 +7,60 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child:Container(
-        color: Color.fromRGBO(133, 191, 255, 100),
+        color: const Color.fromRGBO(2, 29, 128, 1.0),
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
+              // padding: Ed/geInsets.symmetric(horizontal: 15.0, vertical: 10),
               decoration: BoxDecoration(
-                color: Color.fromRGBO(240, 247, 255, 100),
+                color: Color.fromRGBO(1, 27, 56, 1.0),
                 image: DecorationImage(
+                  alignment: AlignmentDirectional.bottomEnd,
                   image: AssetImage('assets/image/logo.png'),
                   fit: BoxFit.fitWidth,
                 )
               ),
-              child: Text(
-                'Welcome to Cryptown',
-                style: TextStyle(color: Color.fromRGBO(75, 105, 254, 100), fontSize: 16),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Welcome to Cryptown',
+                  style: TextStyle(color: Color.fromRGBO(75, 105, 254, 1), fontSize: 16),
+                ),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.monetization_on),
+              leading: Icon(Icons.monetization_on, color: Colors.white60,),
               title: Text('Crypto'),
               onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
             ),
             ListTile(
-              leading: Icon(Icons.star),
+              leading: Icon(Icons.star, color: Colors.white60,),
               title: Text('Watchlist'),
               onTap: () => {Navigator.of(context).pushNamed('/watch-list')},
             ),
             ListTile(
-              leading: Icon(Icons.tips_and_updates),
+              leading: Icon(Icons.tips_and_updates, color: Colors.white60,),
               title: Text('Exchange List'),
               onTap: () => {Navigator.of(context).pushNamed('/exchange-list')},
             ),
             ListTile(
-              leading: Icon(Icons.forum),
+              leading: Icon(Icons.forum, color: Colors.white60,),
               title: Text('Forum'),
               onTap: () => {Navigator.of(context).pushNamed('/forum')},
             ),
             ListTile(
-              leading: Icon(Icons.newspaper),
+              leading: Icon(Icons.newspaper, color: Colors.white60,),
               title: Text('News'),
               onTap: () => {Navigator.of(context).pushNamed('/news-list')},
             ),
             ListTile(
-              leading: Icon(Icons.account_circle),
+              leading: Icon(Icons.account_circle, color: Colors.white60,),
               title: Text('Profile Settings'),
               onTap: () => {Navigator.of(context).pushNamed('/profile')},
             ),
             ListTile(
-              leading: Icon(Icons.logout),
+              leading: Icon(Icons.logout, color: Colors.white60,),
               title: Text('Logout'),
               onTap: () => {Navigator.of(context).pushNamed('/sign-in')},
             ),

@@ -9,7 +9,8 @@ class WatchlistService {
       final Uri viewWatchList = Uri(
         scheme: 'http',
         // host: 'api.cryptown-besquare.one',
-        host: '192.168.18.79',
+        // host: '192.168.18.79',
+        host: '192.168.100.52 ',
         port: 5000,
         path: '/api/favourite/favourite-list',
       );

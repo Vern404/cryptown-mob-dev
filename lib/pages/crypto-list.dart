@@ -37,7 +37,7 @@ class _CryptoPageState extends State<CryptoPage> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
+        backgroundColor: Color.fromRGBO(38, 2, 105, 1.0),
         centerTitle: true,
         title:Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,width: 150,),
       ),
@@ -75,7 +75,7 @@ class _CryptoPageState extends State<CryptoPage> {
             const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(68, 140, 249, 1.0),
+                  color: Color.fromRGBO(2, 83, 207, 1.0),
                   borderRadius: BorderRadius.circular(10)),
               height: 50,
               width: size.width,
@@ -136,7 +136,8 @@ class _CryptoPageState extends State<CryptoPage> {
                       itemCount: cryptoList.length,
                       itemBuilder: (context, index) {
                         return Card(
-                          color: Color.fromRGBO(202, 225, 252, 1.0),
+                          color: Color.fromRGBO(
+                              112, 32, 144, 1.0),
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child:InkWell(

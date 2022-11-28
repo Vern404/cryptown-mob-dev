@@ -11,20 +11,15 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final UserService _apiClient = UserService();
-
+  late String accesstoken;
   Future<Map<String, dynamic>> getUserData() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    String? accesstoken = _prefs.getString("userJwt");
+    accesstoken = _prefs.getString("userJwt")!;
     dynamic userRes;
     userRes = await _apiClient.getUserProfileData('$accesstoken');
     return userRes;
   }
 
-  // Future<void> logout() async {
-  //   await _apiClient.logout(widget.accesstoken);
-  //   Navigator.pushReplacement(
-  //       context, MaterialPageRoute(builder: (context) => const LoginScreen()));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +166,8 @@ class _ProfileState extends State<Profile> {
                             children: [
                               ElevatedButton(
                                 onPressed: () async {
-                                  Navigator.of(context).pushNamed('/sign-in');
+                                    await _apiClient.logout('$accesstoken');
+                                    Navigator.of(context).pushNamed('/sign-in');
                                 },
                                 style: TextButton.styleFrom(
                                     backgroundColor: Color.fromRGBO(

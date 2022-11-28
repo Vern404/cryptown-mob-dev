@@ -56,8 +56,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cryptown',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(146, 203, 248, 1.0),
-        scaffoldBackgroundColor: Color.fromRGBO(152, 203, 255, 1.0),
+        // primaryColor: Color.fromRGBO(146, 203, 248, 1.0),
+          splashColor: Colors.deepPurple[700],
+        scaffoldBackgroundColor: Color.fromRGBO(13, 0, 99, 1.0),
         inputDecorationTheme: const InputDecorationTheme(
           labelStyle: TextStyle(color: Colors.white60),
           hintStyle: TextStyle(color: Colors.white60),
@@ -71,9 +72,14 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: TextTheme(
           bodyText2:  const TextStyle(color: Colors.white),
+          bodyText1: const TextStyle(color: Colors.white),
           button:  const TextStyle(color: Colors.white),
           subtitle1: const TextStyle(color: Colors.white),
         ),
+        iconTheme: IconThemeData(
+          color: Colors.white60
+        )
+
       ),
       home: const SignInPage(),
       routes: {
