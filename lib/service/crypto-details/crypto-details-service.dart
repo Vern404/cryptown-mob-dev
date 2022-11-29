@@ -21,7 +21,6 @@ class CryptoDetailsService {
       }),
     );
 
-    print(cryptoDetailsUrl);
     if (response.statusCode == 200) {
       return CryptoDetailsModel.fromJson(response.body);
     } else {

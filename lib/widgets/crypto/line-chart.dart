@@ -21,7 +21,6 @@ class LineChartWidget extends StatefulWidget {
 class _LineChartWidgetState extends State<LineChartWidget> {
   late ZoomPanBehavior _zoomPanBehavior;
   late TooltipBehavior _tooltipBehavior;
-  ChartSeriesController? _chartSeriesController1, _chartSeriesController2, _chartSeriesController3;
 
   @override
   void initState() {
@@ -36,114 +35,188 @@ class _LineChartWidgetState extends State<LineChartWidget> {
     super.initState();
   }
 
+  bool _isDailyOffstage = true;
+  void showDaily(){
+    setState(() {
+      _isDailyOffstage = !_isDailyOffstage;
+      _isWeeklyOffstage = true;
+      _isMaxOffstage = true;
+    });
+  }
+  bool _isWeeklyOffstage = true;
+  void showWeekly(){
+    setState(() {
+      _isWeeklyOffstage = !_isWeeklyOffstage;
+      _isDailyOffstage = true;
+      _isMaxOffstage = true;
+    });
+  }
+
+  bool _isMaxOffstage = false;
+  void showMax(){
+    setState(() {
+      _isMaxOffstage = !_isMaxOffstage;
+      _isDailyOffstage = true;
+      _isWeeklyOffstage = true;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
           body: Container(
-            // height: MediaQuery.of(context).size.height,
             child: Column(
               children: <Widget>[
                 Container(
-                  // height: MediaQuery.of(context).size.height,
-                  // alignment: Alignment.center,
-                  height: 630,
-                    padding: const EdgeInsets.all(8.0),
-                    child: SfCartesianChart(
-                        zoomPanBehavior: _zoomPanBehavior,
-                        tooltipBehavior: _tooltipBehavior,
-                        primaryXAxis: NumericAxis(),
-                        primaryYAxis: NumericAxis(
-                            numberFormat: NumberFormat.simpleCurrency()
-                        ),
-                        legend: Legend(
-                          position: LegendPosition.bottom,
-                          title: LegendTitle(
-                            text: 'CryptoChart',
-                          )
-                        ),
-                        series: <ChartSeries>[
-                          LineSeries<List<double>, double>(
-                            name: 'Current Price',
-                            dataSource: widget.dailyChart.cryptoChart,
-                            xValueMapper: (List<double> chartData, _) => chartData[0],
-                            yValueMapper: (List<double> chartData, _) => chartData[1],
-                            onRendererCreated: (ChartSeriesController controller){
-                              _chartSeriesController1 = controller;
-                            },
-                            markerSettings: MarkerSettings(
-                                isVisible: true
-                            ),
-                            enableTooltip: true,
-                            animationDuration: 4500,
-                            animationDelay: 2000,
-                          ),
-                          LineSeries<List<double>, double>(
-                            name: 'Current Price',
-                            dataSource: widget.weeklyChart.cryptoChart,
-                            xValueMapper: (List<double> chartData, _) => chartData[0],
-                            yValueMapper: (List<double> chartData, _) => chartData[1],
-                            onRendererCreated: (ChartSeriesController controller){
-                              _chartSeriesController2 = controller;
-                            },
-                            markerSettings: MarkerSettings(
-                                isVisible: true
-                            ),
-                            enableTooltip: true,
-                            animationDuration: 4500,
-                            animationDelay: 2000,
-                          ),
-                          LineSeries<List<double>, double>(
-                            name: 'Current Price',
-                            dataSource: widget.maxChart.cryptoChart,
-                            xValueMapper: (List<double> chartData, _) => chartData[0],
-                            yValueMapper: (List<double> chartData, _) => chartData[1],
-                            onRendererCreated: (ChartSeriesController controller){
-                              _chartSeriesController3 = controller;
-                            },
-                            markerSettings: MarkerSettings(
-                                isVisible: true
-                            ),
-                            enableTooltip: true,
-                            animationDuration: 4500,
-                            animationDelay: 2000,
-                          ),
-                        ]
-                    ),
-                  ),
-                Container(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
                           child: ElevatedButton(
-                            onPressed: () {
-                              _chartSeriesController1?.animate();
-                            },
+                            onPressed: showDaily,
                             child: Text('Daily'),
                           )),
                       Container(
                           child: ElevatedButton(
-                            onPressed: () {
-                              _chartSeriesController2?.animate();
-                            },
+                            onPressed:showWeekly,
                             child: Text('Weekly'),
                           )),
                       Container(
                           child: ElevatedButton(
-                            onPressed: () {
-                              _chartSeriesController3?.animate();
-                            },
+                            onPressed:showMax,
                             child: Text('Max'),
                           ))
                     ],
                   ),
-                )
+                ),
+                const SizedBox(height: 20),
+                Offstage(
+                  offstage: _isDailyOffstage,
+                  child: Column(
+                    children: [
+                      Text('Daily Chart'),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 600,
+                          padding: const EdgeInsets.all(8.0),
+                          child: SfCartesianChart(
+                              zoomPanBehavior: _zoomPanBehavior,
+                              tooltipBehavior: _tooltipBehavior,
+                              primaryXAxis: NumericAxis(),
+                              primaryYAxis: NumericAxis(
+                                  numberFormat: NumberFormat.simpleCurrency()
+                              ),
+                              legend: Legend(
+                                position: LegendPosition.bottom,
+                                title: LegendTitle(
+                                  text: 'CryptoChart',
+                                )
+                              ),
+                              series: <ChartSeries>[
+                                LineSeries<List<double>, double>(
+                                  name: 'Current Price',
+                                  dataSource: widget.dailyChart.cryptoChart,
+                                  xValueMapper: (List<double> chartData, _) => chartData[0],
+                                  yValueMapper: (List<double> chartData, _) => chartData[1],
+                                  markerSettings: MarkerSettings(
+                                      isVisible: true
+                                  ),
+                                  enableTooltip: true,
+                                  animationDuration: 4500,
+                                  animationDelay: 2000,
+                                ),
+                              ]
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                Offstage(
+                  offstage: _isWeeklyOffstage,
+                  child: Column(
+                    children: [
+                      Text('Weekly Chart'),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 600,
+                        padding: const EdgeInsets.all(8.0),
+                        child: SfCartesianChart(
+                            zoomPanBehavior: _zoomPanBehavior,
+                            tooltipBehavior: _tooltipBehavior,
+                            primaryXAxis: NumericAxis(),
+                            primaryYAxis: NumericAxis(
+                                numberFormat: NumberFormat.simpleCurrency()
+                            ),
+                            legend: Legend(
+                                position: LegendPosition.bottom,
+                                title: LegendTitle(
+                                  text: 'CryptoChart',
+                                )
+                            ),
+                            series: <ChartSeries>[
+                              LineSeries<List<double>, double>(
+                                name: 'Current Price',
+                                dataSource: widget.weeklyChart.cryptoChart,
+                                xValueMapper: (List<double> chartData, _) => chartData[0],
+                                yValueMapper: (List<double> chartData, _) => chartData[1],
+                                markerSettings: MarkerSettings(
+                                    isVisible: true
+                                ),
+                                enableTooltip: true,
+                                animationDuration: 4500,
+                                animationDelay: 2000,
+                              ),
+                            ]
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Offstage(
+                  offstage: _isMaxOffstage,
+                  child: Column(
+                    children: [
+                      Text('Max Chart'),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 600,
+                        padding: const EdgeInsets.all(8.0),
+                        child: SfCartesianChart(
+                            zoomPanBehavior: _zoomPanBehavior,
+                            tooltipBehavior: _tooltipBehavior,
+                            primaryXAxis: NumericAxis(),
+                            primaryYAxis: NumericAxis(
+                                numberFormat: NumberFormat.simpleCurrency()
+                            ),
+                            legend: Legend(
+                                position: LegendPosition.bottom,
+                                title: LegendTitle(
+                                  text: 'CryptoChart',
+                                )
+                            ),
+                            series: <ChartSeries>[
+                              LineSeries<List<double>, double>(
+                                name: 'Current Price',
+                                dataSource: widget.maxChart.cryptoChart,
+                                xValueMapper: (List<double> chartData, _) => chartData[0],
+                                yValueMapper: (List<double> chartData, _) => chartData[1],
+                                markerSettings: MarkerSettings(
+                                    isVisible: true
+                                ),
+                                enableTooltip: true,
+                                animationDuration: 4500,
+                                animationDelay: 2000,
+                              ),
+                            ]
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
-
         ),
-
     );
   }
 }

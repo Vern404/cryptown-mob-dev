@@ -9,7 +9,7 @@ class MaxChartService {
     final Uri MaxUrl = Uri(
       scheme: 'https',
       host: 'api.cryptown-besquare.one',
-      path: '/api/crypto/cryptoChartWeekly',
+      path: '/api/crypto/cryptoChartMax',
     );
 
     http.Response response = await http.post(

@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 class DailyChartService {
 
   Future<DailyChart> fetchDailyChart(String cryptoId) async {
-    // final HttpClient client = new HttpClient()
-    //   ..badCertificateCallback=(X509Certificate cert,String host,int port)=>true;
 
     final Uri DailyUrl = Uri(
       scheme: 'https',
