@@ -23,13 +23,14 @@ class _ForumPageState extends State<ForumPage> {
         ),
         body:Column(
           children: [
+            const SizedBox(height: 10),
             Text('FORUM',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 25,
+                fontSize: 35,
                 color: Colors.white,
               ),),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Expanded(child: ForumCard())
           ],
         )
