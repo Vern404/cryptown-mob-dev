@@ -19,11 +19,9 @@ class UserService {
         },
       );
       switch (response.statusCode) {
-        case 200:
+        default:
           final data = jsonDecode(response.body);
           return data;
-        default:
-          throw Exception(response.reasonPhrase);
       }
     } on Exception catch (error) {
       // rethrow;
@@ -45,13 +43,10 @@ class UserService {
           'Content-Type': 'application/json',
         },
       );
-      
       switch (response.statusCode) {
-        case 200:
+        default:
           final data = jsonDecode(response.body);
           return data;
-        default:
-          throw Exception(response.reasonPhrase);
       }
     } on Exception catch (error) {
       // rethrow;

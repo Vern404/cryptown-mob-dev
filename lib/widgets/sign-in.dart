@@ -53,17 +53,27 @@ class _signInState extends State<signIn> {
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-      if (res['userJwt'] != null) {
+      if (res['user'] != null) {
         String accessToken = res["userJwt"];
         SharedPreferences _prefs = await SharedPreferences.getInstance();
         _prefs.setString('userJwt', accessToken);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('${res['mssg']}'),
+          backgroundColor: Colors.green.shade300,
+        ));
         Navigator.of(context).pushNamed('/crypto-list');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['mssg']}'),
+          content: Text('${res['error']}'),
           backgroundColor: Colors.red.shade300,
         ));
       }
+      // else{
+      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //     content: Text('Bad Request'),
+      //     backgroundColor: Colors.red.shade300,
+      //   ));
+      // }
     }
   }
 

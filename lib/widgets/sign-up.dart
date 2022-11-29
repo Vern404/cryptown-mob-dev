@@ -53,15 +53,19 @@ class _SignUpState extends State<SignUp> {
       dynamic res = await _apiClient.registerUser(userData);
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      String accessToken = res["userJwt"];
 
-      if (accessToken != null) {
+      if (res['user'] != null) {
+        String accessToken = res["userJwt"];
         SharedPreferences _prefs = await SharedPreferences.getInstance();
         _prefs.setString('userJwt', accessToken);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('${res['mssg']}'),
+          backgroundColor: Colors.green.shade300,
+        ));
         Navigator.of(context).pushNamed('/crypto-list');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['mssg']}'),
+          content: Text('${res['error']}'),
           backgroundColor: Colors.red.shade300,
         ));
       }
