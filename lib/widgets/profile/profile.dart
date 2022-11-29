@@ -12,6 +12,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final UserService _apiClient = UserService();
   late String accesstoken;
+
   Future<Map<String, dynamic>> getUserData() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     accesstoken = _prefs.getString("userJwt")!;
@@ -167,6 +168,8 @@ class _ProfileState extends State<Profile> {
                               ElevatedButton(
                                 onPressed: () async {
                                     await _apiClient.logout('$accesstoken');
+                                    SharedPreferences _prefs = await SharedPreferences.getInstance();
+                                    await _prefs.remove('$accesstoken');
                                     Navigator.of(context).pushNamed('/sign-in');
                                 },
                                 style: TextButton.styleFrom(

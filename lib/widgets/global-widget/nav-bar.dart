@@ -1,4 +1,6 @@
+import 'package:drc_cryptown/service/user/user-service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -62,7 +64,14 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.logout, color: Colors.white60,),
               title: Text('Logout'),
-              onTap: () => {Navigator.of(context).pushNamed('/sign-in')},
+              onTap: () async {
+                final UserService _apiClient = UserService();
+                SharedPreferences _prefs = await SharedPreferences.getInstance();
+                String accesstoken = _prefs.getString("userJwt")!;
+                await _apiClient.logout(accesstoken);
+                await _prefs.remove(accesstoken);
+                Navigator.of(context).pushNamed('/sign-in');
+              },
             ),
           ],
         ),

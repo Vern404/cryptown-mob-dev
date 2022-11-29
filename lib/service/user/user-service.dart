@@ -7,12 +7,8 @@ class UserService {
   Future<dynamic> registerUser(Map<String, dynamic>? data) async {
     try {
       final Uri registerUrl = Uri(
-        // scheme: 'https',
-        // host: 'api.cryptown-besquare.one',
-        scheme: 'http',
-        // host: '192.168.18.79',
-        host: '192.168.100.52',
-        port: 5000,
+        scheme: 'https',
+        host: 'api.cryptown-besquare.one',
         path: '/api/user/signup',
       );
       Response response = await post(
@@ -38,12 +34,8 @@ class UserService {
   Future<dynamic> login(Map<String, dynamic>? data) async {
     try {
       final Uri loginUrl = Uri(
-        // scheme: 'https',
-        // host: 'api.cryptown-besquare.one',
-        scheme: 'http',
-        // host: '192.168.18.79',
-        host: '192.168.100.52',
-        port: 5000,
+        scheme: 'https',
+        host: 'api.cryptown-besquare.one',
         path: '/api/user/login',
       );
       Response response = await post(
@@ -70,12 +62,8 @@ class UserService {
   Future<dynamic> getUserProfileData(String accessToken) async {
     try {
       final Uri viewProfileUrl = Uri(
-        // scheme: 'https',
-        // host: 'api.cryptown-besquare.one',
-        scheme: 'http',
-        // host: '192.168.18.79',
-        host: '192.168.100.52',
-        port: 5000,
+        scheme: 'https',
+        host: 'api.cryptown-besquare.one',
         path: '/api/user/profile',
       );
       Response response = await get(
@@ -103,12 +91,8 @@ class UserService {
   }) async {
     try {
       final Uri updateProfileUrl = Uri(
-        // scheme: 'https',
-        // host: 'api.cryptown-besquare.one',
-        scheme: 'http',
-        // host: '192.168.18.79',
-        host: '192.168.100.52',
-        port: 5000,
+        scheme: 'https',
+        host: 'api.cryptown-besquare.one',
         path: '/api/user/update',
       );
       Response response = await patch(
@@ -133,15 +117,11 @@ class UserService {
     }
   }
 
-  Future<Response> logout(String accessToken) async {
+  Future<dynamic> logout(String accessToken) async {
     try {
       final Uri logoutUrl = Uri(
-        // scheme: 'https',
-        // host: 'api.cryptown-besquare.one',
-        scheme: 'http',
-        // host: '192.168.18.79',
-        host: '192.168.100.52',
-        port: 5000,
+        scheme: 'https',
+        host: 'api.cryptown-besquare.one',
         path: '/api/user/logout',
       );
       Response response = await delete(
@@ -150,7 +130,7 @@ class UserService {
           'Authorization': 'Bearer $accessToken'
         },
       );
-      print(response.body);
+
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);
