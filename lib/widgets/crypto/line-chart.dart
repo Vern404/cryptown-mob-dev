@@ -68,25 +68,28 @@ class _LineChartWidgetState extends State<LineChartWidget> {
             child: Column(
               children: <Widget>[
                 Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          child: ElevatedButton(
-                            onPressed: showDaily,
-                            child: Text('Daily'),
-                          )),
-                      Container(
-                          child: ElevatedButton(
-                            onPressed:showWeekly,
-                            child: Text('Weekly'),
-                          )),
-                      Container(
-                          child: ElevatedButton(
-                            onPressed:showMax,
-                            child: Text('Max'),
-                          ))
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                            child: ElevatedButton(
+                              onPressed: showDaily,
+                              child: Text('Daily'),
+                            )),
+                        Container(
+                            child: ElevatedButton(
+                              onPressed:showWeekly,
+                              child: Text('Weekly'),
+                            )),
+                        Container(
+                            child: ElevatedButton(
+                              onPressed:showMax,
+                              child: Text('Max'),
+                            ))
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
