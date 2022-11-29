@@ -57,7 +57,6 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                             numberFormat: NumberFormat.simpleCurrency()
                         ),
                         legend: Legend(
-                          isVisible: true,
                           position: LegendPosition.bottom,
                           title: LegendTitle(
                             text: 'CryptoChart',

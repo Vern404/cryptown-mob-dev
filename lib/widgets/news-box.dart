@@ -24,7 +24,7 @@ class NewsCard extends StatelessWidget {
                   }
                 },
                 child: Card(
-                  color: Color.fromRGBO(2, 90, 192, 1.0),
+                  color: Color.fromRGBO(127, 156, 200, 1.0),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Column(

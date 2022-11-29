@@ -43,12 +43,12 @@ class CryptoDetails {
   final int marketCapRank;
   final double currentPriceUsd;
   final double currentPriceBtc;
-  final int currentPriceMyr;
+  final double currentPriceMyr;
   final int marketCapUsd;
   final int marketCapMyr;
-  final int totalSupply;
-  final int maxSupply;
-  final int circulatingSupply;
+  final dynamic totalSupply;
+  final dynamic maxSupply;
+  final double circulatingSupply;
   final Ath ath;
   final Ath atl;
   final String link;
@@ -65,12 +65,12 @@ class CryptoDetails {
     marketCapRank: json["market_cap_rank"],
     currentPriceUsd: json["current_price_usd"].toDouble(),
     currentPriceBtc: json["current_price_btc"].toDouble(),
-    currentPriceMyr: json["current_price_myr"],
+    currentPriceMyr: json["current_price_myr"].toDouble(),
     marketCapUsd: json["market_cap_usd"],
     marketCapMyr: json["market_cap_myr"],
-    totalSupply: json["total_supply"],
-    maxSupply: json["max_supply"],
-    circulatingSupply: json["circulating_supply"],
+    totalSupply: json["total_supply"] ?? '0',
+    maxSupply: json["max_supply"] ?? '0',
+    circulatingSupply: json["circulating_supply"].toDouble(),
     ath: Ath.fromMap(json["ath"]),
     atl: Ath.fromMap(json["atl"]),
     link: json["link"],

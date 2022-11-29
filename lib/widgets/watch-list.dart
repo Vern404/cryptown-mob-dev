@@ -47,16 +47,14 @@ Future<Map<String, dynamic>> getWatchlist() async {
 
            //get json response body data into list
            var watchlist = snapshot.data!["favourites"];
-           print(watchlist[0]['favid']);
            List<Favourite> favourite = List.castFrom(watchlist.map((e) => Favourite.fromMap(e)).toList());
-           print(favourite[0].coinname);
 
            return ListView.builder(
                itemCount: favourite.length,
                itemBuilder: (context, index) {
                  return Card(
-                   color: Color.fromRGBO(202, 225, 252, 1.0),
-                   child: Container(
+                     color: Color.fromRGBO(127, 156, 200, 1.0),
+                     child: Container(
                        padding: EdgeInsets.symmetric(horizontal: 15),
                        child:InkWell(
                          onTap: (){
@@ -64,45 +62,56 @@ Future<Map<String, dynamic>> getWatchlist() async {
                                '/crypto-details',
                                arguments:favourite[index].cryptoid);
                          },
-                         child: Row(
-                             mainAxisSize: MainAxisSize.min,
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   Text(favourite[index].coinname),
-                                   Image.network(favourite[index].imageUrl,height: 100,),
-                                   ElevatedButton(
-                                       onPressed: (){
-                                         setState(() async {
-                                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                             content: const Text('Removing coin from WatchList'),
-                                             backgroundColor: Colors.green.shade300,
-                                           ));
-                                           Map<String, dynamic> favCoinData = {
-                                             'favId' : favourite[index].favid,
-                                           };
-
-                                           dynamic res = await watchlistService.deleteWatchListCoin(accessToken: accesstoken,data: favCoinData);
-
-                                           if (res['deletedFavId'] != null) {
-                                             print(res);
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Row(
+                               mainAxisSize: MainAxisSize.min,
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                   children: [
+                                     Row(
+                                       children: [
+                                         Text(favourite[index].coinname,
+                                           style: TextStyle(
+                                             fontSize: 14,
+                                             fontWeight: FontWeight.bold,
+                                           ) ,),
+                                         const SizedBox(width: 10),
+                                         Image.network(favourite[index].imageUrl,height: 40,),
+                                       ],
+                                     ),
+                                     ElevatedButton(
+                                         onPressed: (){
+                                           setState(() async {
                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                               content: const Text('Removed from Watchlist'),
+                                               content: const Text('Removing coin from WatchList'),
                                                backgroundColor: Colors.green.shade300,
                                              ));
-                                             Navigator.of(context).pushNamed('/watch-list');
-                                           } else {
-                                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                               content: Text('Error: ${res['mssg']}'),
-                                               backgroundColor: Colors.red.shade300,
-                                             ));
-                                           }
-                                         });
-                                       },
-                                       child: Text(
-                                         'remove'
-                                       ))
-                                 ],
-                               ),
+                                             Map<String, dynamic> favCoinData = {
+                                               'favId' : favourite[index].favid,
+                                             };
+
+                                             dynamic res = await watchlistService.deleteWatchListCoin(accessToken: accesstoken,data: favCoinData);
+
+                                             if (res['deletedFavId'] != null) {
+                                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                 content: const Text('Removed from Watchlist'),
+                                                 backgroundColor: Colors.green.shade300,
+                                               ));
+                                               Navigator.of(context).pushNamed('/watch-list');
+                                             } else {
+                                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                 content: Text('Error: ${res['mssg']}'),
+                                                 backgroundColor: Colors.red.shade300,
+                                               ));
+                                             }
+                                           });
+                                         },
+                                         child: Text(
+                                           'remove'
+                                         ))
+                                   ],
+                                 ),
+                         ),
                          ),
                        )
                  );

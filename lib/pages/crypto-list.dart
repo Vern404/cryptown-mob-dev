@@ -136,8 +136,7 @@ class _CryptoPageState extends State<CryptoPage> {
                       itemCount: cryptoList.length,
                       itemBuilder: (context, index) {
                         return Card(
-                          color: Color.fromRGBO(
-                              112, 32, 144, 1.0),
+                          color: Color.fromRGBO(127, 156, 200, 1.0),
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child:InkWell(
@@ -178,8 +177,6 @@ class _CryptoPageState extends State<CryptoPage> {
                                           isStarred: false,
                                           iconDisabledColor: Colors.white,
                                           valueChanged: (_isStarred) async {
-                                            print('Is Starred : $_isStarred');
-
                                             SharedPreferences _prefs = await SharedPreferences.getInstance();
                                             String accesstoken = _prefs.getString("userJwt")!;
 
@@ -196,7 +193,6 @@ class _CryptoPageState extends State<CryptoPage> {
 
                                             dynamic res = await watchlistService.updateWatchListCoin(accessToken: accesstoken, data: coinData);
                                             if (res['newFavourite'] != null) {
-                                              print(res);
                                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                                 content: const Text('Added into Watchlist'),
                                                 backgroundColor: Colors.green.shade300,

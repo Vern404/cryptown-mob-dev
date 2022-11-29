@@ -21,7 +21,6 @@ class _ProfileState extends State<Profile> {
     return userRes;
   }
 
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -77,7 +76,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 child: const Image(
                                     image: AssetImage('assets/image/logo.png'),
-                                    fit: BoxFit.cover),
+                                    fit: BoxFit.fitWidth),
                               ),
                             ),
                           ),
@@ -98,20 +97,21 @@ class _ProfileState extends State<Profile> {
                             child: Text(
                               email,
                               style: const TextStyle(
-                                  fontSize: 18, color: Colors.black),
+                                  fontSize: 18, color: Colors.white60),
                             ),
                           ),
                           const SizedBox(height: 20),
                           Container(
+                            alignment: Alignment.center,
                             width: size.width,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
                             decoration: BoxDecoration(
-                                color: Colors.white54,
+                                color: Color.fromRGBO(127, 156, 200, 1.0),
                                 borderRadius: BorderRadius.circular(5)),
                             child: const Text('PROFILE DETAILS',
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700)),
                           ),
@@ -121,7 +121,7 @@ class _ProfileState extends State<Profile> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 5),
                             decoration: BoxDecoration(
-                                color: const Color(0xFF48484A),
+                                color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(5)),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -144,7 +144,7 @@ class _ProfileState extends State<Profile> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 5),
                             decoration: BoxDecoration(
-                                color: const Color(0xFF48484A),
+                                color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(5)),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

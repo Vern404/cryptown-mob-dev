@@ -125,7 +125,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 ),
                                 child: const Image(
                                     image: AssetImage('assets/image/logo.png'),
-                                    fit: BoxFit.cover),
+                                    fit: BoxFit.fitWidth),
                               ),
                             ),
                           ),
@@ -146,7 +146,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             child: Text(
                               email,
                               style: const TextStyle(
-                                  fontSize: 14, color: Colors.black38),
+                                  fontSize: 14, color: Colors.white60),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -156,7 +156,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
                             decoration: BoxDecoration(
-                                color: Colors.white54,
+                                color: Color.fromRGBO(127, 156, 200, 1.0),
                                 borderRadius: BorderRadius.circular(5)),
                             child: const Text('PROFILE DETAILS',
                                 style: TextStyle(
@@ -170,34 +170,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             key: formkey,
                             child: Column(
                               children: [
-                                // Container(
-                                //   width: size.width,
-                                //   padding: const EdgeInsets.symmetric(
-                                //       vertical: 5, horizontal: 5),
-                                //   decoration: BoxDecoration(
-                                //       color: const Color(0xFF48484A),
-                                //       borderRadius: BorderRadius.circular(5)),
-                                // child: Column(
-                                //   mainAxisSize: MainAxisSize.min,
-                                //   mainAxisAlignment: MainAxisAlignment.start,
-                                //   crossAxisAlignment: CrossAxisAlignment.start,
-                                //   children: [
-                                //     const Text('Email:',
-                                //         style: TextStyle(
-                                //             fontSize: 16, color: Colors.white38)),
-                                //     const SizedBox(height: 7),
-                                //     Text(email,
-                                //         style: const TextStyle(
-                                //             fontSize: 19, color: Colors.white)),
-                                //   ],
-                                // ),
-                                // ),
                                 TextFormField(
                                   initialValue: 'Email: ${email}',
                                   enabled: false,
                                   decoration: InputDecoration(
-                                    fillColor: Color.fromRGBO(
-                                        193, 193, 193, 1.0),
+                                    fillColor: Color.fromRGBO(127, 156, 200, 0.5),
                                     filled: true,
                                     border: OutlineInputBorder(),
                                     // labelText: 'Email',
@@ -211,10 +188,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
                                   ]),
                                   decoration: InputDecoration(
-                                    fillColor: Color.fromRGBO(250, 250, 250, 1),
+                                    fillColor: Color.fromRGBO(127, 156, 200, 0.75),
                                     filled: true,
                                     border: OutlineInputBorder(),
-                                    labelText: 'Userame',
+                                    labelText: 'Username',
                                     hintText: 'new username',
                                   ),
                                 ),
@@ -231,7 +208,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   ]),
                                   obscureText: _isHidden1,
                                   decoration: InputDecoration(
-                                    fillColor: Color.fromRGBO(250, 250, 250, 1),
+                                    fillColor: Color.fromRGBO(127, 156, 200, 0.75),
                                     filled: true,
                                     border: OutlineInputBorder(),
                                     labelText: 'Password',
@@ -251,7 +228,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   validator: (value) => MatchValidator(errorText: 'Password do not match').validateMatch(value!, passwordController.text ),
                                   obscureText: _isHidden2,
                                   decoration: InputDecoration(
-                                    fillColor: Color.fromRGBO(250, 250, 250, 1),
+                                    fillColor: Color.fromRGBO(127, 156, 200, 0.75),
                                     filled: true,
                                     border: OutlineInputBorder(),
                                     labelText: 'Confirm Password',
@@ -270,19 +247,21 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           ),
 
                           const SizedBox(height: 20),
-                          ElevatedButton(
-                            //update profile function call
-                            onPressed: update,
-                            style: TextButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(
-                                    49, 109, 255, 1.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 15, horizontal: 25)),
-                            child: const Text(
-                              'Update Profile',
-                              style: TextStyle(color: Colors.white),
+                          Container(
+                            alignment: Alignment.center,
+                            child: ElevatedButton(
+                              //update profile function call
+                              onPressed: update,
+                              style: TextButton.styleFrom(
+                                  backgroundColor: Color.fromRGBO(49, 109, 255, 1.0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 15, horizontal: 25)),
+                              child: const Text(
+                                'Update Profile',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ],

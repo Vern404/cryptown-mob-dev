@@ -2,25 +2,22 @@ import 'dart:convert';
 import 'dart:core';
 import 'package:http/http.dart';
 
-class WatchlistService {
+class ForumService {
 
-  Future<dynamic> getUserFavouriteList(String accessToken) async {
+  Future<dynamic> getForum(String accessToken) async {
     try {
-      final Uri viewWatchList = Uri(
+      final Uri viewAllPost = Uri(
         scheme: 'https',
         host: 'api.cryptown-besquare.one',
-        // host: '192.168.18.79',
-        // host: '192.168.100.52 ',
-        // port: 5000,
-        path: '/api/favourite/favourite-list',
+        path: '/api/post/getPosts',
       );
       Response response = await get(
-        viewWatchList,
+        viewAllPost,
         headers: {
           'Authorization': 'Bearer $accessToken'
         },
       );
-
+      // print(response.body);
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);
@@ -33,20 +30,18 @@ class WatchlistService {
     }
   }
 
-  Future<dynamic> updateWatchListCoin({
+  Future<dynamic> addPost({
     required String accessToken,
     required Map<String, dynamic> data,
   }) async {
     try {
-      final Uri updateWatchlistUrl = Uri(
+      final Uri addPost = Uri(
         scheme: 'https',
         host: 'api.cryptown-besquare.one',
-        // host: '192.168.18.79',
-        // port: 5000,
-        path: '/api/favourite/favourite-add',
+        path: '/api/post/addPost',
       );
       Response response = await post(
-        updateWatchlistUrl,
+        addPost,
         headers: {
           'Authorization': 'Bearer $accessToken',
           'Content-Type': 'application/json',
@@ -68,20 +63,18 @@ class WatchlistService {
   }
 
 
-  Future<dynamic> deleteWatchListCoin({
+  Future<dynamic> deletePost({
     required String accessToken,
     required Map<String, dynamic> data})
   async {
     try {
-      final Uri deleteCoinUrl = Uri(
+      final Uri deletePost = Uri(
         scheme: 'https',
         host: 'api.cryptown-besquare.one',
-        // host: '192.168.18.79',
-        // port: 5000,
-        path: '/api/favourite/favourite-delete',
+        path: '/api/post/post-delete',
       );
       Response response = await delete(
-        deleteCoinUrl,
+        deletePost,
         body: jsonEncode(data),
         headers: <String, String>{
           'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ class ExchangeListCard extends StatelessWidget {
           itemCount: exchangeListModel.exchange.length,
           itemBuilder: (context, index) {
             return Card(
-              color: Color.fromRGBO(2, 53, 116, 1.0),
+              color: Color.fromRGBO(127, 156, 200, 1.0),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(

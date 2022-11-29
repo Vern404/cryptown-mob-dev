@@ -23,32 +23,36 @@ class CryptoDetailsCard extends StatelessWidget {
               ),),
               SizedBox(height: 20,),
               Card(
-                color: Colors.deepPurpleAccent,
+                color: Color.fromRGBO(123, 123, 255, 1),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.network('${cryptoDetailsModel.cryptoDetails.image}',height: 50,),
-                      const SizedBox(width: 10,),
-                      Text('${cryptoDetailsModel.cryptoDetails.name}',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        ),),
-                      const SizedBox(width: 10,),
-                      Text('${cryptoDetailsModel.cryptoDetails.symbol.toUpperCase()}',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 18,
-                        ),),
+                      Row(
+                        children: [
+                          Image.network('${cryptoDetailsModel.cryptoDetails.image}',height: 30,),
+                          const SizedBox(width: 10,),
+                          Text('${cryptoDetailsModel.cryptoDetails.name}',
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                            ),),
+                          const SizedBox(width: 10,),
+                          Text('${cryptoDetailsModel.cryptoDetails.symbol.toUpperCase()}',
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 18,
+                            ),),
+                        ],
+                      ),
                       const SizedBox(width: 20,),
                       Column(
                         children: [
                           Text('USD ${cryptoDetailsModel.cryptoDetails.currentPriceUsd}',
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.w500,
-                              fontSize: 18,
+                              fontSize: 16,
                             ),),
                           const SizedBox(height: 10,),
                           ElevatedButton(

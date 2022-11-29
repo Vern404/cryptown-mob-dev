@@ -1,5 +1,6 @@
 
 
+import 'package:drc_cryptown/widgets/forum-card.dart';
 import 'package:drc_cryptown/widgets/global-widget/nav-bar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,11 +21,19 @@ class _ForumPageState extends State<ForumPage> {
           backgroundColor: Color.fromRGBO(38, 2, 105, 1.0),
           title:Image.asset('assets/image/logo.png',fit: BoxFit.fitWidth,width: 150,),
         ),
-        body: Column(
+        body:Column(
           children: [
-          Text('Forum')
-        ]
-    )
+            Text('FORUM',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Colors.white,
+              ),),
+            const SizedBox(height: 20),
+            Expanded(child: ForumCard())
+          ],
+        )
+
     );
   }
 }
