@@ -68,12 +68,6 @@ class _signInState extends State<signIn> {
           backgroundColor: Colors.red.shade300,
         ));
       }
-      // else{
-      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //     content: Text('Bad Request'),
-      //     backgroundColor: Colors.red.shade300,
-      //   ));
-      // }
     }
   }
 

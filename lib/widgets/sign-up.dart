@@ -125,6 +125,7 @@ class _SignUpState extends State<SignUp> {
                             controller: usernameController,
                             validator: MultiValidator([
                               RequiredValidator(errorText: "* Required"),
+                              MaxLengthValidator(50, errorText: "Max is 50 character"),
                               PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
                             ]),
                             decoration: InputDecoration(
@@ -140,6 +141,7 @@ class _SignUpState extends State<SignUp> {
                             controller: emailController,
                             validator: MultiValidator([
                               RequiredValidator(errorText: "* Required"),
+                              MaxLengthValidator(100, errorText: "Max character is 100"),
                               EmailValidator(errorText: "Enter valid email format"),
                             ]),
                             decoration: InputDecoration(
@@ -159,7 +161,8 @@ class _SignUpState extends State<SignUp> {
                               PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'Need at least 1 special character'),
                               PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
                               PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
-                              PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
+                              PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
+                              PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
                             ]),
                             obscureText: _isHidden1,
                             decoration: InputDecoration(

@@ -29,28 +29,12 @@ void main() {
     BlocProvider(create: (context) => ExchangeCubit()),
     BlocProvider(create: (context) => CryptoDetailsCubit()),
     BlocProvider(create: (context) => DailyChartCubit()),
-    // BlocProvider(create: (context) => SignUpCubit()),
-    // BlocProvider(create: (context) => SignInCubit()),
-    // BlocProvider(create: (context) => ViewProfileCubit()),
   ],child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   // const MyApp({Key? key}) : super(key: key);
 
-  MaterialColor color = MaterialColor(0xffbeeeff, <int, Color>{
-    50: Color(0xffbeeeff),
-    100: Color(0xffbeeeff),
-    200: Color(0xffbeeeff),
-    300: Color(0xffbeeeff),
-    400: Color(0xffbeeeff),
-    500: Color(0xffbeeeff),
-    600: Color(0xffbeeeff),
-    700: Color(0xffbeeeff),
-    800: Color(0xffbeeeff),
-    900: Color(0xffbeeeff),
-  },
-  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
