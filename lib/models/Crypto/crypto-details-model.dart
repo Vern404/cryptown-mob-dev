@@ -76,7 +76,7 @@ class CryptoDetails {
     link: json["link"],
     image: json["image"],
     exchange: List<Exchange>.from(json["exchange"].map((x) => Exchange.fromMap(x))),
-    description: json["description"],
+    description: json["description"] ?? 'not found',
   );
 }
 
@@ -119,7 +119,7 @@ class Exchange {
 
   factory Exchange.fromMap(Map<String, dynamic> json) => Exchange(
     name: json["name"],
-    tradeUrl: json["trade_url"],
+    tradeUrl: json["trade_url"] ?? '',
   );
 
 }

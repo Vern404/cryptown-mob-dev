@@ -1,8 +1,8 @@
 
-// import 'package:drc_cryptown/models/forum/forum-list-model.dart';
 import 'package:drc_cryptown/service/forum-service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ForumCard extends StatefulWidget {
@@ -48,9 +48,7 @@ class _ForumCardState extends State<ForumCard> {
 
                   //get json response body data into list
                   var forumlist = snapshot.data!["postsObj"];
-                  // print(forumlist);
                   List<dynamic> forum = List<dynamic>.from(forumlist.entries.map((kv)=>kv.value));
-                  // List<String> forum = List.castFrom(forumlist.map((e) => List<String>.from(e)).toList());
 
                   return ListView.builder(
                       itemCount: forum.length,
@@ -91,7 +89,7 @@ class _ForumCardState extends State<ForumCard> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Text(forum[index]['postdatetime'],
+                                        Text(DateFormat.yMMMd().format(DateTime.parse(forum[index]['postdatetime'])),
                                           style: GoogleFonts.robotoMono(
                                             fontStyle: FontStyle.italic,
                                               textStyle: TextStyle(
