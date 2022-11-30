@@ -3,6 +3,7 @@ import 'package:drc_cryptown/models/Crypto/crypto-details-model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 
 class CryptoDetailsCard extends StatelessWidget {
   const CryptoDetailsCard({required this.cryptoDetailsModel, Key? key}) : super(key: key);
@@ -33,17 +34,23 @@ class CryptoDetailsCard extends StatelessWidget {
                         children: [
                           Image.network('${cryptoDetailsModel.cryptoDetails.image}',height: 30,),
                           const SizedBox(width: 10,),
-                          Text('${cryptoDetailsModel.cryptoDetails.name}',
-                            style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 20,
-                            ),),
-                          const SizedBox(width: 10,),
-                          Text('${cryptoDetailsModel.cryptoDetails.symbol.toUpperCase()}',
-                            style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 18,
-                            ),),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('${cryptoDetailsModel.cryptoDetails.name}',
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),),
+                              const SizedBox(height: 10,),
+                              Text('${cryptoDetailsModel.cryptoDetails.symbol.toUpperCase()}',
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 18,
+                                ),),
+                            ],
+                          ),
+
                         ],
                       ),
                       const SizedBox(width: 20,),
@@ -69,14 +76,14 @@ class CryptoDetailsCard extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
               Card(
-                color: Color.fromRGBO(123, 123, 255, 1),
+                color: Color.fromRGBO(20, 1, 144, 1.0),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Text('Description',
+                      Text('Description'.toUpperCase(),
                         style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           fontSize: 18,
                         ),),
                       const SizedBox(height: 10,),
@@ -90,21 +97,27 @@ class CryptoDetailsCard extends StatelessWidget {
                       )
                       )),
               Card(
-                color: Color.fromRGBO(123,123, 255, 1),
+                color: Color.fromRGBO(13, 0, 99, 1.0),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Text('Statistics',
+                      Text('Statistics'.toUpperCase(),
                         style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           fontSize: 18,
                         ),),
                       const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('MARKET CAP'),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(123,123, 255, 1),
+                                borderRadius: BorderRadius.all(Radius.circular(10))
+                            ),
+                              child: Text('MARKET CAP')),
                           Text('${cryptoDetailsModel.cryptoDetails.marketCapUsd}'),
                         ],
                       ),
@@ -112,7 +125,13 @@ class CryptoDetailsCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('MARKET CAP RANK'),
+                          Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(123,123, 255, 1),
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Text('MARKET CAP RANK')),
                           Text('${cryptoDetailsModel.cryptoDetails.marketCapRank}'),
                         ],
                       ),
@@ -120,7 +139,13 @@ class CryptoDetailsCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('TOTAL SUPPLY'),
+                          Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(123,123, 255, 1),
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Text('TOTAL SUPPLY')),
                           Text('${cryptoDetailsModel.cryptoDetails.totalSupply}'),
                         ],
                       ),
@@ -128,7 +153,13 @@ class CryptoDetailsCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('MAX SUPPLY'),
+                          Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(123,123, 255, 1),
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Text('MAX SUPPLY')),
                           Text('${cryptoDetailsModel.cryptoDetails.maxSupply}'),
                         ],
                       ),
@@ -136,7 +167,13 @@ class CryptoDetailsCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('CIRCULATING SUPPLY'),
+                          Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(123,123, 255, 1),
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Text('CIRCULATING SUPPLY')),
                           Text('${cryptoDetailsModel.cryptoDetails.circulatingSupply}'),
                         ],
                       ),
@@ -149,63 +186,135 @@ class CryptoDetailsCard extends StatelessWidget {
               Column(
                 children: [
                   Card(
-                    color: Colors.deepPurple[700],
+                    color: Color.fromRGBO(20, 1, 144, 1.0),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Text('ATH(all time high)'),
-                          const SizedBox(height: 10,),
+                          Text('ATH(all time high)'.toUpperCase(),
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                            ),),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Column(
-                                children: [
-                                  Text('USD ${cryptoDetailsModel.cryptoDetails.ath.usd}'),
-                                  Text('${cryptoDetailsModel.cryptoDetails.ath.changePercentageUsd} %'),
-                                ],
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(123,123, 255, 1),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text('USD ${cryptoDetailsModel.cryptoDetails.ath.usd}',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                        )),
+                                    const SizedBox(height: 5),
+                                    Text('${cryptoDetailsModel.cryptoDetails.ath.changePercentageUsd} %',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                        )),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                children: [
-                                  Text('MYR ${cryptoDetailsModel.cryptoDetails.ath.myr}'),
-                                  Text('${cryptoDetailsModel.cryptoDetails.ath.changePercentageMyr}%'),
-                                ],
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(123,123, 255, 0.5),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text('MYR ${cryptoDetailsModel.cryptoDetails.ath.myr}',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                        )),
+                                    const SizedBox(height: 5),
+                                    Text('${cryptoDetailsModel.cryptoDetails.ath.changePercentageMyr}%',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                        )),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10,),
-                          Text('${cryptoDetailsModel.cryptoDetails.ath.dateUsd}')
+                          const SizedBox(height: 20),
+                          Text(DateFormat.yMMMd().format(DateTime.parse('${cryptoDetailsModel.cryptoDetails.ath.dateUsd}')))
                         ],
                       ),
                     ),
                   ),
                   Card(
-                    color: Colors.deepPurple[700],
+                    color: Color.fromRGBO(20, 1, 144, 1.0),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Text('ATL(all time low)'),
-                          const SizedBox(height: 10,),
+                          Text('ATL(all time low)'.toUpperCase(),
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Column(
-                                children: [
-                                  Text('USD ${cryptoDetailsModel.cryptoDetails.atl.usd}'),
-                                  Text('${cryptoDetailsModel.cryptoDetails.atl.changePercentageUsd} %'),
-                                ],
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(123,123, 255, 1),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text('USD ${cryptoDetailsModel.cryptoDetails.atl.usd}',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                        )),
+                                    const SizedBox(height: 5),
+                                    Text('${cryptoDetailsModel.cryptoDetails.atl.changePercentageUsd} %',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                        )),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                children: [
-                                  Text('MYR ${cryptoDetailsModel.cryptoDetails.atl.myr}'),
-                                  Text('${cryptoDetailsModel.cryptoDetails.atl.changePercentageMyr} %'),
-                                ],
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(123,123, 255, 0.5),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text('MYR ${cryptoDetailsModel.cryptoDetails.atl.myr}',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                        )),
+                                    const SizedBox(height: 5),
+                                    Text('${cryptoDetailsModel.cryptoDetails.atl.changePercentageMyr} %',
+                                        style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                        )),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10,),
-                          Text('${cryptoDetailsModel.cryptoDetails.atl.dateUsd}')
+                          const SizedBox(height: 20),
+                          Text(DateFormat.yMMMd().format(DateTime.parse('${cryptoDetailsModel.cryptoDetails.atl.dateUsd}'))),
                         ],
                       ),
                     ),

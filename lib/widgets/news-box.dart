@@ -2,6 +2,7 @@
 import 'package:drc_cryptown/models/News/news-model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsCard extends StatelessWidget {
@@ -55,7 +56,7 @@ class NewsCard extends StatelessWidget {
                                 ))
                           ),
                           const SizedBox(height: 20),
-                          Text('${newsListModel.news[index].datePublished}'),
+                          Text(DateFormat.yMMMd().format(DateTime.parse('${newsListModel.news[index].datePublished}'))),
                         ],
                     ),
                   ),
