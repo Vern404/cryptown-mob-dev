@@ -76,7 +76,7 @@ class CryptoDetails {
     link: json["link"],
     image: json["image"],
     exchange: List<Exchange>.from(json["exchange"].map((x) => Exchange.fromMap(x))),
-    description: json["description"] ?? 'not found',
+    description: json["description"] == '' ? 'not found' : json["description"],
   );
 }
 

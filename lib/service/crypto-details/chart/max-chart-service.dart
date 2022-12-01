@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 import 'package:drc_cryptown/models/Crypto/crypto-chart/max-chart.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,17 +9,17 @@ class MaxChartService {
     final Uri MaxUrl = Uri(
       scheme: 'https',
       host: 'api.cryptown-besquare.one',
-      path: '/api/crypto/cryptoChartMax',
+      path: '/api/crypto/cryptoChartMax/$cryptoId',
     );
 
-    http.Response response = await http.post(
+    http.Response response = await http.get(
       MaxUrl,
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String,String>{
-        'cryptoId': cryptoId
-      }),
+      // headers: <String, String>{
+      //   'Content-Type': 'application/json',
+      // },
+      // body: jsonEncode(<String,String>{
+      //   'cryptoId': cryptoId
+      // }),
     );
 
 

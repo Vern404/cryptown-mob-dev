@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:drc_cryptown/models/Crypto/crypto-chart/daily-chart.dart';
 import 'package:http/http.dart' as http;
@@ -10,17 +9,17 @@ class DailyChartService {
     final Uri DailyUrl = Uri(
       scheme: 'https',
       host: 'api.cryptown-besquare.one',
-      path: '/api/crypto/cryptoChartDaily',
+      path: '/api/crypto/cryptoChartDaily/$cryptoId',
     );
 
-    http.Response response = await http.post(
+    http.Response response = await http.get(
       DailyUrl,
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String,String>{
-        'cryptoId': cryptoId
-      }),
+      // headers: <String, String>{
+      //   'Content-Type': 'application/json',
+      // },
+      // body: jsonEncode(<String,String>{
+      //   'cryptoId': cryptoId
+      // }),
     );
 
 
