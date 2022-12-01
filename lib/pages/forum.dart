@@ -37,6 +37,13 @@ class _ForumPageState extends State<ForumPage> {
                 fontSize: 14,
                 color: Colors.white,
               ),),
+            const SizedBox(height: 5),
+            Text('The forum just to display topics that discussed through CrypTown website, post and reply will be coming soon',
+              style: TextStyle(
+                fontWeight: FontWeight.w200,
+                fontSize: 10,
+                color: Colors.white60,
+              ),),
             const SizedBox(height: 10),
             Expanded(child: ForumCard())
           ],

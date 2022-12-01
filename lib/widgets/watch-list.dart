@@ -48,7 +48,7 @@ Future<Map<String, dynamic>> getWatchlist() async {
            //get json response body data into list
            var watchlist = snapshot.data!["favourites"];
            List<Favourite> favourite = List.castFrom(watchlist.map((e) => Favourite.fromMap(e)).toList());
-           print(snapshot.data);
+
            if (favourite.isEmpty){
              return Container(
                alignment: Alignment.topCenter,
