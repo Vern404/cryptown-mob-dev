@@ -126,7 +126,6 @@ class _SignUpState extends State<SignUp> {
                             validator: MultiValidator([
                               RequiredValidator(errorText: "* Required"),
                               MaxLengthValidator(50, errorText: "Max is 50 character"),
-                              PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
                             ]),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -256,7 +255,6 @@ class _SignUpState extends State<SignUp> {
                                 TextButton(
                                     onPressed: (){
                                       Navigator.of(context).pushNamed('/sign-in');
-                                      print("Return to sign in page");
                                     },
                                     child: Text('Login')),
                                 Text('here'),

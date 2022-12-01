@@ -16,8 +16,6 @@ import 'package:drc_cryptown/states/crypto/crypto-cubit.dart';
 import 'package:drc_cryptown/states/exchange-list/exchange-list-cubit.dart';
 import 'package:drc_cryptown/states/news/news-cubit.dart';
 import 'package:drc_cryptown/pages/crypto-list.dart';
-// import 'package:drc_cryptown/states/user/sign-in/sign-in-cubit.dart';
-// import 'package:drc_cryptown/states/user/sign-up/sign-up-cubit.dart';
 import 'package:drc_cryptown/pages/update-profile-page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

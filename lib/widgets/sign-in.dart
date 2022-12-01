@@ -187,7 +187,6 @@ class _signInState extends State<signIn> {
                             TextButton(
                                 onPressed: (){
                                   Navigator.of(context).pushNamed('/sign-up');
-                                  print("Success enter sign up page");
                                 },
                                 child: Text('Sign Up')),
                             Text('Now'),

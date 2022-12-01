@@ -185,7 +185,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   controller: usernameController,
                                   validator: MultiValidator([
                                     RequiredValidator(errorText: "* Required"),
-                                    PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
+                                    MaxLengthValidator(50, errorText: "Max is 50 character"),
                                   ]),
                                   decoration: InputDecoration(
                                     fillColor: Color.fromRGBO(127, 156, 200, 0.75),
@@ -204,7 +204,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'Need at least 1 special character'),
                                     PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
                                     PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
-                                    PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number')
+                                    PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
+                                    PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
                                   ]),
                                   obscureText: _isHidden1,
                                   decoration: InputDecoration(

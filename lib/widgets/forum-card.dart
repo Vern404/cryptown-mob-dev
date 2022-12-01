@@ -79,22 +79,14 @@ class _ForumCardState extends State<ForumCard> {
                                         ],
                                       ),
                                       const SizedBox(height: 10),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width,
-                                        padding: EdgeInsets.all(8.0),
-                                        decoration: BoxDecoration(
-                                            color: Color.fromRGBO(101, 134, 206,1),
-                                            borderRadius: BorderRadius.all(Radius.circular(5))
-                                        ),
-                                        child: Text(forum[index]['post'],
-                                          textAlign: TextAlign.justify,
-                                          style: GoogleFonts.roboto(
-                                              textStyle: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                              )
-                                          ),),
-                                      ),
+                                      Text(forum[index]['post'],
+                                        textAlign: TextAlign.justify,
+                                        style: GoogleFonts.roboto(
+                                            textStyle: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                            )
+                                        ),),
                                       const SizedBox(height: 10),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -109,8 +101,6 @@ class _ForumCardState extends State<ForumCard> {
                                             ),),
                                         ],
                                       ),
-                                      const SizedBox(height: 10),
-                                      // Text(forum[index]['replies']),
                                     ],
                                   ),
                                 ),
