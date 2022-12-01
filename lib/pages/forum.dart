@@ -30,6 +30,13 @@ class _ForumPageState extends State<ForumPage> {
                 fontSize: 35,
                 color: Colors.white,
               ),),
+            const SizedBox(height: 5),
+            Text('Welcome to Cryptown Community',
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 14,
+                color: Colors.white,
+              ),),
             const SizedBox(height: 10),
             Expanded(child: ForumCard())
           ],
