@@ -70,7 +70,7 @@ class NavBar extends StatelessWidget {
                 String accesstoken = _prefs.getString("userJwt")!;
                 await _apiClient.logout(accesstoken);
                 await _prefs.remove(accesstoken);
-                Navigator.of(context).pushNamed('/sign-in');
+                Navigator.of(context).pushNamedAndRemoveUntil('/sign-in', (Route<dynamic> route)=> false);
               },
             ),
           ],

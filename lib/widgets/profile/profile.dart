@@ -170,7 +170,7 @@ class _ProfileState extends State<Profile> {
                                     await _apiClient.logout('$accesstoken');
                                     SharedPreferences _prefs = await SharedPreferences.getInstance();
                                     await _prefs.remove('$accesstoken');
-                                    Navigator.of(context).pushNamed('/sign-in');
+                                    Navigator.of(context).pushNamedAndRemoveUntil('/sign-in', (Route<dynamic> route)=> false);
                                 },
                                 style: TextButton.styleFrom(
                                     backgroundColor: Color.fromRGBO(
