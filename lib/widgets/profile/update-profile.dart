@@ -64,7 +64,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
         content: const Text('Profile Updated Succefully'),
         backgroundColor: Colors.green.shade300,
       ));
-      Navigator.of(context).pushNamed('/crypto-list');
+      Navigator.of(context).popAndPushNamed('/crypto-list');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Error: ${res['mssg']}'),
