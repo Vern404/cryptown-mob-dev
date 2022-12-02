@@ -38,12 +38,15 @@ class _ForumPageState extends State<ForumPage> {
                 color: Colors.white,
               ),),
             const SizedBox(height: 5),
-            Text('The forum just to display topics that discussed through CrypTown website, post and reply will be coming soon',
-              style: TextStyle(
-                fontWeight: FontWeight.w200,
-                fontSize: 10,
-                color: Colors.white60,
-              ),),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text('The forum just to display topics that discussed from Cryptown website, post and reply will be coming soon',
+                style: TextStyle(
+                  fontWeight: FontWeight.w200,
+                  fontSize: 12,
+                  color: Colors.white60,
+                ),),
+            ),
             const SizedBox(height: 10),
             Expanded(child: ForumCard())
           ],

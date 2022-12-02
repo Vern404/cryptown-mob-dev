@@ -109,7 +109,8 @@ Future<Map<String, dynamic>> getWatchlist() async {
                                              content: const Text('Removed from Watchlist'),
                                              backgroundColor: Colors.green.shade300,
                                            ));
-                                           Navigator.of(context).pushNamed('/watch-list');
+                                           Navigator.of(context).popAndPushNamed('/watch-list');
+
                                          } else {
                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                              content: Text('Error: ${res['mssg']}'),
