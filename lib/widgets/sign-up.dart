@@ -126,6 +126,8 @@ class _SignUpState extends State<SignUp> {
                             validator: MultiValidator([
                               RequiredValidator(errorText: "* Required"),
                               MaxLengthValidator(50, errorText: "Max is 50 character"),
+                              PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
+                              PatternValidator(r'(^[^#?!@$%^&*-<()>]*$)', errorText: 'No special character allowed')
                             ]),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
