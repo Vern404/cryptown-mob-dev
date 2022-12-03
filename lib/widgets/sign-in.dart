@@ -61,7 +61,7 @@ class _signInState extends State<signIn> {
           content: Text('${res['mssg']}'),
           backgroundColor: Colors.green.shade300,
         ));
-        Navigator.of(context).pushNamed('/crypto-list');
+        Navigator.of(context).pushReplacementNamed('/crypto-list');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('${res['error']}'),
@@ -186,7 +186,7 @@ class _signInState extends State<signIn> {
                             Text('New to Cryptown? '),
                             TextButton(
                                 onPressed: (){
-                                  Navigator.of(context).pushNamed('/sign-up');
+                                  Navigator.of(context).popAndPushNamed('/sign-up');
                                 },
                                 child: Text('Sign Up')),
                             Text('Now'),
