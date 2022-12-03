@@ -135,6 +135,8 @@ class _signInState extends State<signIn> {
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
                             EmailValidator(errorText: "Enter valid email format"),
+                            PatternValidator(r'(^[\w\d.@]+$)', errorText: 'Only period allowed')
+
                           ]),
                           controller: _emailController,
                           decoration: InputDecoration(

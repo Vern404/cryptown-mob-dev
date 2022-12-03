@@ -127,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                               RequiredValidator(errorText: "* Required"),
                               MaxLengthValidator(50, errorText: "Max is 50 character"),
                               PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
-                              PatternValidator(r'(^[^#?!@$%^&*-<()>]*$)', errorText: 'No special character allowed')
+                              PatternValidator(r'(^[^#?!@$%^&*-<()>{}]*$)', errorText: 'No special character allowed')
                             ]),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -144,6 +144,7 @@ class _SignUpState extends State<SignUp> {
                               RequiredValidator(errorText: "* Required"),
                               MaxLengthValidator(100, errorText: "Max character is 100"),
                               EmailValidator(errorText: "Enter valid email format"),
+                              PatternValidator(r'(^[\w\d.@]+$)', errorText: 'Only period allowed')
                             ]),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
