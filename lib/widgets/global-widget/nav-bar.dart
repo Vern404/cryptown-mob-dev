@@ -34,32 +34,32 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.monetization_on, color: Colors.white60,),
               title: Text('Crypto'),
-              onTap: () => {Navigator.of(context).pushNamed('/crypto-list')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/crypto-list')},
             ),
             ListTile(
               leading: Icon(Icons.star, color: Colors.white60,),
               title: Text('Watchlist'),
-              onTap: () => {Navigator.of(context).pushNamed('/watch-list')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/watch-list')},
             ),
             ListTile(
               leading: Icon(Icons.tips_and_updates, color: Colors.white60,),
               title: Text('Exchange List'),
-              onTap: () => {Navigator.of(context).pushNamed('/exchange-list')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/exchange-list')},
             ),
             ListTile(
               leading: Icon(Icons.forum, color: Colors.white60,),
               title: Text('Forum'),
-              onTap: () => {Navigator.of(context).pushNamed('/forum')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/forum')},
             ),
             ListTile(
               leading: Icon(Icons.newspaper, color: Colors.white60,),
               title: Text('News'),
-              onTap: () => {Navigator.of(context).pushNamed('/news-list')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/news-list')},
             ),
             ListTile(
               leading: Icon(Icons.account_circle, color: Colors.white60,),
               title: Text('Profile Settings'),
-              onTap: () => {Navigator.of(context).pushNamed('/profile')},
+              onTap: () => {Navigator.of(context).popAndPushNamed('/profile')},
             ),
             ListTile(
               leading: Icon(Icons.logout, color: Colors.white60,),
