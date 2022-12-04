@@ -207,7 +207,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     PatternValidator(r'(?=.*?[a-z])', errorText: 'Need at least 1 lower case letter'),
                                     PatternValidator(r'(?=.*?[A-Z])', errorText: 'Need at least 1 upper case letter'),
                                     PatternValidator(r'(?=.*?[0-9])', errorText: 'Need at least 1 number'),
-                                    PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
                                   ]),
                                   obscureText: _isHidden1,
                                   decoration: InputDecoration(

@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.drc_cryptown">
-   <application
-        android:label="drc_cryptown"
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:label="Cryptown"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
