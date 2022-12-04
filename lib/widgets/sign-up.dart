@@ -132,7 +132,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Userame',
-                              hintText: 'john123',
+                              hintText: 'John123',
                             ),
                           ),
                         ),
