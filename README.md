@@ -13,12 +13,12 @@
  9. User profile
  
 # App Reference:
- ![marketphone](https://user-images.githubusercontent.com/108507098/205570878-752d512b-22b6-4fb8-9781-7aa5c0ddbf92.png)
- ![crypto-details](https://user-images.githubusercontent.com/108507098/205577933-9b6e0184-5aaa-45e2-a7f3-8ca9051f4be1.jpg)
- ![chart](https://user-images.githubusercontent.com/108507098/205577841-9ac6bdce-165f-4d15-b42c-e8c6d9f76ce1.jpg)
+ <img src="https://user-images.githubusercontent.com/108507098/205570878-752d512b-22b6-4fb8-9781-7aa5c0ddbf92.png" >
+ <img src ="https://user-images.githubusercontent.com/108507098/205577933-9b6e0184-5aaa-45e2-a7f3-8ca9051f4be1.jpg" width="200">
+ <img src = "https://user-images.githubusercontent.com/108507098/205577841-9ac6bdce-165f-4d15-b42c-e8c6d9f76ce1.jpg" width="200">
 
 
-[video reference](https://github.com/Vern404/cryptown-mob-dev/blob/main/assets/reference/demo%20video.mp4)![crypto-details](https://user-
+[video reference](https://github.com/Vern404/cryptown-mob-dev/blob/main/assets/reference/demo%20video.mp4)
 
 
 # Package that installed 
