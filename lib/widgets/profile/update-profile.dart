@@ -187,7 +187,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     RequiredValidator(errorText: "* Required"),
                                     MaxLengthValidator(50, errorText: "Max is 50 character"),
                                     PatternValidator(r'(^\S*$)', errorText: 'No whitespace allowed'),
-                                    PatternValidator(r'(^[^#?!@$%^&*-<()>]*$)', errorText: 'No special character allowed')
+                                    PatternValidator(r'(^[\w\d]+$)', errorText: 'Only number and aplhabets allowed')
                                   ]),
                                   decoration: InputDecoration(
                                     fillColor: Color.fromRGBO(127, 156, 200, 0.75),
