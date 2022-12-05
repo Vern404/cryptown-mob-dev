@@ -81,6 +81,8 @@ class _ForumCardState extends State<ForumCard> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            Icon(Icons.account_circle, color: Colors.white60,),
+                                            const SizedBox(width: 5),
                                             Text(forum[index]['username'],
                                               style: GoogleFonts.robotoMono(
                                                   textStyle: TextStyle(
