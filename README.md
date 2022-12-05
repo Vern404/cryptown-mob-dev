@@ -15,7 +15,7 @@
 # App Reference:
  ![marketphone](https://user-images.githubusercontent.com/108507098/205570878-752d512b-22b6-4fb8-9781-7aa5c0ddbf92.png)
 
-(https://www.veed.io/view/f6ac900f-9d47-46cc-83bb-485c4b984944?source=compressor-sharing)
+[video reference](https://github.com/Vern404/cryptown-mob-dev/blob/main/assets/reference/demo%20video.mp4)
 
 # Package that installed 
 1. Cupertino_icons ^1.0.2
