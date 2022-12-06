@@ -16,6 +16,7 @@ class _ForumCardState extends State<ForumCard> {
 
   final ForumService forumService = ForumService();
   late String accesstoken;
+  List<dynamic> forum = [];
 
   Future<Map<String, dynamic>> getForumlist() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -48,7 +49,9 @@ class _ForumCardState extends State<ForumCard> {
 
                   //get json response body data into list
                   var forumlist = snapshot.data!["postsObj"];
-                  List<dynamic> forum = List<dynamic>.from(forumlist.entries.map((kv)=>kv.value));
+                  forum = List<dynamic>.from(forumlist.entries.map((kv)=>kv.value));
+                  List<dynamic> replies = List<dynamic>.from(forumlist.entries.map((kv)=>kv.value['replies']));
+
 
                   if (forum.isEmpty){
                     return Container(
@@ -61,64 +64,117 @@ class _ForumCardState extends State<ForumCard> {
                           fontWeight: FontWeight.w400,
                         ) ,),
                     );
-                  } else{
+                  } else {
                     return ListView.builder(
+                        shrinkWrap: true,
                         itemCount: forum.length,
                         itemBuilder: (context, index) {
-                          return Padding(
+                          return Container(
                             padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 10),
-                            child: Card(
-                                color: Color.fromRGBO(127, 156, 200, 1.0),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  child:Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                            child: Column(
+                              children: [
+                                Card(
+                                    color: Color.fromRGBO(127, 156, 200, 1.0),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 15),
+                                      child:Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Icon(Icons.account_circle, color: Colors.white60,),
-                                            const SizedBox(width: 5),
-                                            Text(forum[index]['username'],
-                                              style: GoogleFonts.robotoMono(
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Icon(Icons.account_circle, color: Colors.white60,),
+                                                const SizedBox(width: 5),
+                                                Text(forum[index]['username'],
+                                                  style: GoogleFonts.robotoMono(
+                                                      textStyle: TextStyle(
+                                                        fontWeight: FontWeight.w300,
+                                                        fontSize: 14,
+                                                      )
+                                                  ),),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Text(forum[index]['post'],
+                                              textAlign: TextAlign.justify,
+                                              style: GoogleFonts.roboto(
                                                   textStyle: TextStyle(
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
                                                   )
                                               ),),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              children: [
+                                                Text(DateFormat.yMMMMEEEEd().format(DateTime.parse(forum[index]['postdatetime'])),
+                                                  style: GoogleFonts.robotoMono(
+                                                      fontStyle: FontStyle.italic,
+                                                      textStyle: TextStyle(
+                                                        fontWeight: FontWeight.w200,
+                                                        fontSize: 12,
+                                                      )
+                                                  ),),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 15),
+                                            ListView.builder(
+                                              shrinkWrap: true,
+                                                physics: ClampingScrollPhysics(),
+                                                itemCount: replies[index].length,
+                                                itemBuilder: (context, int){
+                                                  return Container(
+                                                    padding: EdgeInsets.all(5),
+                                                    margin: EdgeInsets.all(5),
+                                                    decoration: BoxDecoration(
+                                                      color: Color.fromRGBO(
+                                                          100, 147, 209, 1.0),
+                                                        borderRadius: BorderRadius.circular(10),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.account_circle, color: Colors.white60,),
+                                                            const SizedBox(width: 5),
+                                                            Container(
+                                                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                                                child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['username'])),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(height: 10),
+                                                        Container(
+                                                          alignment: Alignment.bottomLeft,
+                                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                                          child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['subpost']),
+                                                        ),
+                                                        const SizedBox(height: 10),
+                                                        Container(
+                                                          alignment: Alignment.bottomRight,
+                                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                                          child: Text(replies[index].length == 0 ? ' ' : DateFormat.yMMMMEEEEd().format(DateTime.parse(replies[index][int]['subpostdatetime']))
+                                                          ),
+                                                        ),
+
+                                                      ],
+                                                    ),
+                                                  );
+                                                }
+                                            )
+
+
                                           ],
                                         ),
-                                        const SizedBox(height: 10),
-                                        Text(forum[index]['post'],
-                                          textAlign: TextAlign.justify,
-                                          style: GoogleFonts.roboto(
-                                              textStyle: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16,
-                                              )
-                                          ),),
-                                        const SizedBox(height: 10),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            Text(DateFormat.yMMMMEEEEd().format(DateTime.parse(forum[index]['postdatetime'])),
-                                              style: GoogleFonts.robotoMono(
-                                                  fontStyle: FontStyle.italic,
-                                                  textStyle: TextStyle(
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 12,
-                                                  )
-                                              ),),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                      ),
+                                    )
+                                ),
+                              ],
                             ),
                           );
                         }
