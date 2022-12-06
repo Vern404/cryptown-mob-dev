@@ -145,21 +145,40 @@ class _ForumCardState extends State<ForumCard> {
                                                             const SizedBox(width: 5),
                                                             Container(
                                                                 padding: EdgeInsets.symmetric(horizontal: 10),
-                                                                child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['username'])),
+                                                                child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['username'],
+                                                                  style: GoogleFonts.robotoMono(
+                                                                      textStyle: TextStyle(
+                                                                        fontWeight: FontWeight.w300,
+                                                                        fontSize: 14,
+                                                                      )
+                                                                  ),),),
                                                           ],
                                                         ),
                                                         const SizedBox(height: 10),
                                                         Container(
                                                           alignment: Alignment.bottomLeft,
                                                           padding: EdgeInsets.symmetric(horizontal: 10),
-                                                          child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['subpost']),
+                                                          child: Text(replies[index].length == 0 ? ' ' : replies[index][int]['subpost'],
+                                                            textAlign: TextAlign.justify,
+                                                            style: GoogleFonts.roboto(
+                                                                textStyle: TextStyle(
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: 16,
+                                                                )
+                                                            ),),
                                                         ),
                                                         const SizedBox(height: 10),
                                                         Container(
                                                           alignment: Alignment.bottomRight,
                                                           padding: EdgeInsets.symmetric(horizontal: 10),
-                                                          child: Text(replies[index].length == 0 ? ' ' : DateFormat.yMMMMEEEEd().format(DateTime.parse(replies[index][int]['subpostdatetime']))
-                                                          ),
+                                                          child: Text(replies[index].length == 0 ? ' ' : DateFormat.yMMMMEEEEd().format(DateTime.parse(replies[index][int]['subpostdatetime'])),
+                                                            style: GoogleFonts.robotoMono(
+                                                                fontStyle: FontStyle.italic,
+                                                                textStyle: TextStyle(
+                                                                  fontWeight: FontWeight.w200,
+                                                                  fontSize: 12,
+                                                                )
+                                                            ),),
                                                         ),
 
                                                       ],
