@@ -1,6 +1,8 @@
 # cryptown-mob-dev
  A simple mobile application for cryptocurrencies portfolio that contains crypto news, top 100 crypto and its details
- 
+  Backend API already shut down, please use your own API. Thank you.
+  
+  
 # Cryptown features:
  1. Sign In
  2. Sign Up
