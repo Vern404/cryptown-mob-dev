@@ -2,7 +2,9 @@
  A simple mobile application for cryptocurrencies portfolio that contains crypto news, top 100 crypto and its details
   Backend API already shut down, please use your own API. Thank you.
   
-  
+# cryptown protoype
+Designed with Figma and supported with other images from Canva. Prototype can view with this [link](https://www.figma.com/proto/vVqxvxgBbRy7vFGHYIPtVH/Cryptown(web%26mobile)?type=design&node-id=490-685&t=Ncyzh4QgHerYL1Oh-1&scaling=scale-down&page-id=325%3A44&starting-point-node-id=490%3A685&show-proto-sidebar=1&mode=design)
+
 # Cryptown features:
  1. Sign In
  2. Sign Up
